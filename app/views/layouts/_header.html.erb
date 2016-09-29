@@ -1,0 +1,49 @@
+<header>
+<div class="row" style="margin: 15px;">
+	<div class="col-md-2">
+		<%= link_to "/" do %>
+			<%= image_tag "logo.png" , style:"width: 100px; heigth:auto" %>
+			
+		<% end %>
+	</div>
+	<div class="col-md-10">
+		<p style="font-size:30px; margin-top:20px;">Guchada</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<ul class="nav nav-pills nav-justified" 
+			style="margin-right: 10px; margin-left:10px;">
+
+
+  			<li role="presentation" 
+  				<%- if controller_name == 'home' %> class="active" <% end %> >
+  				<a href="/">Home</a>
+  			</li>
+
+  			<% if current_user %> 
+
+  				<li role="presentation"><a href="#">Buscar Gauchada</a></li>
+  				<li role="presentation"><a href="#">Perfil</a></li>
+  				<li role="presentation"><a href="#">Publicar Guachada</a></li>	
+  				<li role="presentation">
+				<%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
+				</li>
+			<% else %>
+				
+				<li role="presentation" 
+					<%- if controller_name == 'sessions' %> class="active" <% end %> >
+    				<%= link_to 'Iniciar Sesión', new_user_session_path %>
+    			</li>
+
+				<li role="presentation" 
+					<%- if controller_name == 'registrations' %> class="active" <% end %> >
+    			<%= link_to 'Registrarse', new_user_registration_path %>
+    			</li>
+
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+</header>
