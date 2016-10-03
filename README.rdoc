@@ -1,4 +1,14 @@
 == Bienvenido al repositorio de Guachada, creado por PGT Software 2016
 
-En este documento encontrala los enlaces directos para acceder a toda la docuemntacion del proyecto.
+En este documento encontrala los enlaces directos para acceder a toda la documentaciòn del proyecto.
 
+La siguente imagen corresponde al Diagrama Entidad Relacion del modelado conceptual de la BD usada en el proyecto.
+
+![DIR](https://github.com/edifierd/gauchada/blob/develop_federico/README.doc/diagrama.png  "Dagrama Entidad Relacion")
+
+<b>Puede acceder a los documentos de elicitaciòn en los siguientes enlaces:</b>
+
+* Entrevista 1 : [Ver](https://github.com/edifierd/gauchada/blob/develop_federico/README.doc/primerEntrega/Entrevista1.pdf)
+* Entrevista 2 : [Ver](https://github.com/edifierd/gauchada/blob/develop_federico/README.doc/primerEntrega/Entrevista2.pdf)
+* SRS: [Ver](https://github.com/edifierd/gauchada/blob/develop_federico/README.doc/primerEntrega/SRS.pdf)
+* Cuestionario : [Ver](https://github.com/edifierd/gauchada/blob/develop_federico/README.doc/primerEntrega/cuestionario.pdf)
