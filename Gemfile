@@ -3,6 +3,13 @@ source 'http://rubygems.org'
 # Manejo de usuarios
 gem 'devise'
 
+# Manejo de roles / permisos
+gem 'cancancan'
+gem 'rolify'
+
+# Ver consultas a modelos en tablas
+gem 'hirb'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgress as the database for Active Record
