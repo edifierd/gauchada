@@ -17,3 +17,7 @@ La siguente imagen corresponde al Diagrama Entidad Relacion del modelado concept
 * Entrevista 2 : [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/primerEntrega/Entrevista2.pdf)
 * SRS: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/primerEntrega/SRS.pdf)
 * Cuestionario : [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/primerEntrega/cuestionario.pdf)
+
+<b>Plan de Gestión de Proyecto:</b>
+
+* Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/segundaEntrega/PGP.pdf)
