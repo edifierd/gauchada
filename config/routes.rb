@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
 
+  get 'users/index'
+
+  get 'users/show'
+
+  get 'gauchada/index'
+
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
 
-  
+  resources :users
 
 
   # The priority is based upon order of creation: first created -> highest priority.
