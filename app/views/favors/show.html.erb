@@ -1,0 +1,40 @@
+
+<div class="panel panel-default" style="margin-top: 20px;">
+  <div class="panel-heading"><h3><%= @favor.titulo %></h3></div>
+  <div class="panel-body">
+    <div class="row">
+	<div class="col-xs-5">
+	<% if @favor.foto == '' %>
+        <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  height: 'auto', width: '150', class: "img-rounded" %>
+        <% else %>
+             <%= image_tag @favor.foto , :alt => "Foto",  
+                style:"max-width: 320px; margin-rigth:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        <% end %>
+	</div>
+	<div class="col-xs-7">
+		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Descripciòn</b><br>
+    		<h4><%= @favor.descripcion %></h4>
+  		</div>
+  		</div>
+
+  		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Ubicacion</b><br>
+    		<h4><%= @favor.ubicacion %></h4>
+  		</div>
+  		</div>
+
+  		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Propietario</b><br>
+    		<h4><%= link_to (@favor.user.first_name + @favor.user.last_name) , @favor.user %></h4>
+  		</div>
+  		</div> 
+	</div>
+</div>
+  </div>
+</div>
+
+

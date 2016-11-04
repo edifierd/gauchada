@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
 
+  get 'favors/show'
+
+  #get 'favor/show'
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
+
+  resources :users
+  resources :favors
 
 
   

@@ -13,15 +13,15 @@ class Ability
     if (user.has_role? :usuario) 
         can :read, :all
         #cannot :crud , CouchType
-        #can :crud , User , :id => user.id
+        can :crud , User , :id => user.id
         #can :cr , Couch
-        #can :ud , Couch , :user_id => user.id
+        can :ud , Favor , :user_id => user.id
         #can :crud, Reservation
     end
     if user.has_role? :admin
         can :crud, User
         #can :crud, CouchType
-        #can :crud, Couch
+        can :crud, Favor
         #can :crud, Reservation
     else 
         #can :read, Couch

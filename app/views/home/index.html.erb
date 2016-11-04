@@ -2,3 +2,44 @@
 <br>
 <h1>Bienvenido a Gauchada</h1>
 <p>La cadena de favores mas grande de toda America</p>
+
+
+<table class="table">
+      <tr>
+      <td colspan="2"><h3> Listado de Favores </h3></td>
+      <td colspan="1"> 
+      <% if current_user and can? :create, Favor %>
+                  <%= link_to "Agregar", new_favor_path() , class: 'btn btn-success btn-sm',  action: "new"%>
+            <% end %>
+      </td>
+      <td colspan="2"></td>
+      <tr>
+            <th> Foto </th>
+            <th> Titulo</th>
+            <th> Ubicacion</th>
+            <th> Descripción </th>
+            <th> Propietario </th>
+      </tr>
+
+      <% @favor.each do |favor| %>
+            <tr>
+                  <td> 
+                  <%= link_to favor do %>
+                        <% if favor.foto == '' %>
+                              <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
+                        <% else %>
+                              <%= image_tag favor.foto , :alt => "Foto",  
+                              height: 'auto', width: '70', style:"" %>
+                        <% end %>
+                  <% end %>
+                  </td>
+                  <td> <%= link_to favor.titulo, favor %> </td>
+                  <td> <%= link_to favor.ubicacion, favor %> </td>
+                  <td> <%= link_to favor.descripcion, favor %> </td>
+                  <td> <%= link_to favor.user.first_name, favor.user %> </td>
+            </tr>
+      <% end %>
+
+
+</table>
+
