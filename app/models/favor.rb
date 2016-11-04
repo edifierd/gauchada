@@ -1,4 +1,6 @@
 class Favor < ActiveRecord::Base
-	belongs_to :user
+	has_many :offers
 	has_many :comments
+	belongs_to :user
+	
 end

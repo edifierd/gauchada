@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104012115) do
+ActiveRecord::Schema.define(version: 20161104023622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buys", force: :cascade do |t|
+    t.integer  "cantidad_eslabones"
+    t.decimal  "costo_eslabon"
+    t.datetime "fecha"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "comentarios", force: :cascade do |t|
     t.string   "cuerpo"
@@ -57,6 +66,15 @@ ActiveRecord::Schema.define(version: 20161104012115) do
     t.integer  "user_id"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.boolean  "otorgado"
+    t.text     "cuerpo"
+    t.integer  "user_id"
+    t.integer  "favor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ofrecimientos", force: :cascade do |t|
     t.integer  "estado"
     t.text     "mensaje"
@@ -64,6 +82,22 @@ ActiveRecord::Schema.define(version: 20161104012115) do
     t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.integer  "gauchadaa_id"
+  end
+
+  create_table "pays", force: :cascade do |t|
+    t.integer  "cantidad_eslabones"
+    t.decimal  "costo_eslabon"
+    t.integer  "user_id"
+    t.datetime "fecha"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "rankings", force: :cascade do |t|
+    t.string   "titulo"
+    t.integer  "cantidad_eslabones"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "roles", force: :cascade do |t|
