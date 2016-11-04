@@ -2,10 +2,15 @@ source 'http://rubygems.org'
 
 # Manejo de usuarios
 gem 'devise'
+# bcrypt
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 # Manejo de roles / permisos
 gem 'cancancan'
 gem 'rolify'
+
+# timezones
+gem 'tzinfo-data'
 
 # Ver consultas a modelos en tablas
 gem 'hirb'

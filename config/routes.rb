@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'ranking/index'
+
+  get 'ranking/show'
+
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
