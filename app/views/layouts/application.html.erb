@@ -1,3 +1,5 @@
+<style type="text/css">html{position: relative; min-height: 100%;}</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,20 +8,25 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="margin-bottom: 65px;">
 
 <%= render 'layouts/header' %>
 
-
-<div class="alert alert-success alert-dismissible" role="alert">
+<% if notice %>
+<div class="alert alert-success alert-dismissible" role="alert" 
+  style="margin-top: 15px; margin-bottom: 15px;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <%= notice %>
 </div>
-<div class="alert alert-warning alert-dismissible" role="alert">
+<% end %>
+
+<% if alert %>
+<div class="alert alert-warning alert-dismissible" role="alert"
+  style="margin-top: 15px; margin-bottom: 15px;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <%= alert %>
 </div>
-
+<% end %>
  
 
 <div class="container">

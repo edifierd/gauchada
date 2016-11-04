@@ -1,13 +1,61 @@
-<h1>Perfil</h1>
-<h3>Nombre</h3>
-<p><%= @user.first_name%></p>
-<h3>Apellido</h3>
-<p><%= @user.last_name%></p>
-<% if current_user.id==@user.id %> 
-<h3>Mail</h3>
-<p><%= @user.email%></p>
-<% end %>
-<h3>Edad</h3>
-<p><%= @user.age%></p>
+<div class="row">
+	<div class="col-md-5">
+		<% if @user.genre=="Masculino"%>
+			<%= image_tag "user_predef_hombre.png" , style:"height: 350px;", class:"img-responsive" %>
+		<%else%>
+			<<%= image_tag "user_predef_mujer.png" , style:"height: 350px;", class:"img-responsive" %>
+		<%end%>
+	</div>
+	<div class="col-md-7">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<b><h4>Nombre</h4></b>
+				<p><%= @user.first_name + " " + @user.last_name%> </p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<b><h4>Edad</h4></b>
+				<p><%= @user.age%> </p>
+			</div>
+		</div>
+		<% if current_user.id==@user.id %>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<b><h4>Correo</h4></b>
+					<p><%= @user.email%></p>
+				</div>
+			</div>
+			<%end%>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<b><h4>Cantidad de eslabones</h4></b>
+				<p><%= @user.eslabon %> </p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<b><h4>Logro</h4></b>
+				<p><%= link_to 'Prueba', "ranking_index_path" %> </p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

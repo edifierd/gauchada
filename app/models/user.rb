@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #Relaciones
+  has_many :offers
+  has_many :favors
+  has_many :comments
+  has_many :buys
+  has_many :pays
 
   after_create :assign_default_role
 

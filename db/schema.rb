@@ -11,10 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003174728) do
+ActiveRecord::Schema.define(version: 20161104044110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "cuerpo"
+    t.integer  "favor_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favors", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "ubicacion"
+    t.text     "descripcion"
+    t.string   "foto"
+    t.string   "estado"
+    t.datetime "fecha"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.boolean  "otorgado"
+    t.text     "cuerpo"
+    t.integer  "user_id"
+    t.integer  "favor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pays", force: :cascade do |t|
+    t.integer  "cantidad_eslabones"
+    t.decimal  "costo_eslabon"
+    t.integer  "user_id"
+    t.datetime "fecha"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "rankings", force: :cascade do |t|
+    t.string   "titulo"
+    t.integer  "cantidad_eslabones"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161003174728) do
     t.integer  "age"
     t.string   "avatar_img"
     t.string   "secret_question"
+    t.integer  "eslabon",                default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
