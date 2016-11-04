@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get 'favors/show'
 
-  #get 'favor/show'
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -12,7 +10,7 @@ Rails.application.routes.draw do
   resources :favors
 
 
-  
+  resources :users
 
 
   # The priority is based upon order of creation: first created -> highest priority.

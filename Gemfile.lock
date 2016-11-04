@@ -37,7 +37,12 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    bcrypt (3.1.10)
+    bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x86-mingw32)
+      bcrypt (>= 3.1.3)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -86,8 +91,12 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    nokogiri (1.6.8-x86-mingw32)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
     pg (0.18.3)
+    pg (0.18.3-x86-mingw32)
     pkg-config (1.1.7)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -148,6 +157,8 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2016.6)
+      tzinfo (>= 1.0.0)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     warden (1.2.3)
@@ -160,8 +171,10 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.1, >= 3.1.5)
   byebug
   cancancan
   coffee-rails (~> 4.1.0)
@@ -176,6 +189,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

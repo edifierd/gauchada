@@ -11,7 +11,7 @@ class Ability
     user ||= User.new  
 
     if (user.has_role? :usuario) 
-        can :read, :all
+        can :crud, :all
         #cannot :crud , CouchType
         can :crud , User , :id => user.id
         can :crud , Favor , :user_id => user.id

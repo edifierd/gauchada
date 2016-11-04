@@ -41,11 +41,14 @@
   			<% if current_user %> 
 
   				<li role="presentation"><a href="#">Buscar Gauchada</a></li>
-  				<li role="presentation"><a href="#">Perfil</a></li>
+
   				<li role="presentation"
   					<%- if controller_name == 'favors' %> class="active" <% end %> >
   					<%= link_to "Publicar Gauchada", new_favor_path() , action: "new" %>
   				</li>	
+
+  				<li role="presentation"><%= link_to "Perfil" , current_user %></li>
+
   				<li role="presentation">
 				<%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
 				</li>
