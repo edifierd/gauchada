@@ -4,7 +4,7 @@ En este documento encontra la los enlaces directos para acceder a toda la docume
 
 La siguente imagen corresponde al Diagrama Entidad Relacion del modelado conceptual de la BD usada en el proyecto.
 
-![DIR](https://github.com/edifierd/gauchada/blob/master/README.doc/diagrama.png  "Dagrama Entidad Relacion")
+![DER](https://github.com/edifierd/gauchada/blob/master/README.doc/diagrama.png  "Dagrama Entidad Relacion")
 
 <b>Si es desarrollador del proyecto, puede conocer las historias de usuario:</b>
 
