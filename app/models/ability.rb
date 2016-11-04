@@ -14,8 +14,8 @@ class Ability
         can :read, :all
         #cannot :crud , CouchType
         can :crud , User , :id => user.id
-        #can :cr , Couch
-        can :ud , Favor , :user_id => user.id
+        can :crud , Favor , :user_id => user.id
+        can :read , Favor
         #can :crud, Reservation
     end
     if user.has_role? :admin

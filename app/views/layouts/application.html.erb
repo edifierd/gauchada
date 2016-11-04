@@ -1,4 +1,14 @@
-<style type="text/css">html{position: relative; min-height: 100%;}</style>
+<style type="text/css">
+  html{position: relative; min-height: 100%;}
+
+  .msj{
+    margin-top: 15px; 
+    margin-bottom: 15px;
+    padding: 2px;
+    color: #FFF;
+    text-align: center;
+  }
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -14,20 +24,33 @@
 <%= render 'layouts/header' %>
 
 <% if notice %>
-<div class="alert alert-success alert-dismissible" role="alert" 
-  style="margin-top: 15px; margin-bottom: 15px;">
+<div class="alert alert-success alert-dismissible msj" role="alert" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <%= notice %>
+  <h3><%= notice %></h3>
 </div>
 <% end %>
 
 <% if alert %>
-<div class="alert alert-warning alert-dismissible" role="alert"
-  style="margin-top: 15px; margin-bottom: 15px;">
+<div class="alert alert-warning alert-dismissible msj" role="alert" >
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <%= alert %>
+  <h3><%= alert %></h3>
 </div>
 <% end %>
+
+
+<% if flash[:success]%>
+  <div class="alert alert-success alert-dismissible msj" role="alert" >
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h3><%=flash[:success]%></h3>
+  </div>
+<%end%>
+
+<% if flash[:danger]%>
+  <div class="aalert alert-warning alert-dismissible msj" role="alert" >
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h3><%=flash[:danger]%></h3>
+  </div>
+<%end%>
  
 
 <div class="container">

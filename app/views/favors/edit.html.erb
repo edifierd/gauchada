@@ -1,0 +1,83 @@
+
+<style type="text/css">
+  .mensaje{
+    margin: 25px;
+    width: 650px;
+    height: auto;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+</style>
+
+<h1> Editar Favor</h1>
+
+
+<%= form_for @favor , url: {action:"update"} do |f| %>
+  <table class="table">
+    <tr>
+      <td><%= f.label :titulo %></td>
+      <td>
+      <%= f.text_field :titulo, class: 'form-control', label: 'titulo', placeholder: 'Ingrese el titulo' , :required => true,  size: 50%>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :descripcion %></td>
+      <td>
+      <%= f.text_area :descripcion, class: 'form-control', label: 'descripcion', placeholder: 'Ingrese la descripción' , :required => true %>
+        </td>
+    </tr>
+
+    <tr>
+      <td><%= f.label "Ubicación del favor" %></td>
+      <td>
+        <select name=ubicacion>
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Buenos Aires Capital">Buenos Aires Capital</option>
+          <option value="Catamarca">Catamarca</option>
+          <option value="Chaco">Chaco</option>
+          <option value="Chubut">Chubut</option>      
+          <option value="Uruguay">Uruguay</option>      
+          <option value="Cordoba">Cordoba</option>
+          <option value="Corrientes">Corrientes</option>
+          <option value="Entre Rios">Entre Rios</option>
+          <option value="Formosa">Formosa</option>
+          <option value="Jujuy">Jujuy</option>
+          <option value="La Pampa">La Pampa</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Misiones">Misiones</option>
+          <option value="Neuquen">Neuquen</option>
+          <option value="Rio Negro">Rio Negro</option>
+          <option value="Salta">Salta</option>
+          <option value="San Juan">San Juan</option>
+          <option value="San Luis">San Luis</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+          <option value="Santa Fe">Santa Fe</option>
+          <option value="Santiago del Estero">Santiago del Estero</option>
+          <option value="Tierra del Fuego">Tierra del Fuego</option>
+          <option value="Tucuman">Tucuman</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <p>Foto Actual</p><br>
+        <%= image_tag @favor.foto , :alt => "Sin Foto", height: 'auto', width: '200' %>
+      </th>
+      <td>
+        <%= f.label :foto, "Cambiar URL Foto" %><br>
+        <%= f.text_field :foto , placeholder: 'URL de la foto', size: 50 %>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td colspan="2" align="center" >
+        <%= f.submit "Modificar favor", class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
