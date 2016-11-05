@@ -1,0 +1,16 @@
+
+
+<div class="panel panel-primary" style="margin-top: 25px;">
+  <div class="panel-body">
+    <h1>Contraseña alternativa</h1>
+  </div>
+  <div class="panel-footer">
+  	<h2>Su contraseña temporal es:  <%= @pass %> <br>
+  	Ingrese a su cuenta para modificarla.</h2>
+  </div>
+  <div class="panel-footer" style="text-align: center;">
+  	<%= link_to 'Iniciar Sesión Ahora', new_user_session_path, :class => "btn btn-warning"%>
+  </div>
+</div>
+
+

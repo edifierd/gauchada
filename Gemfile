@@ -7,7 +7,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 
-gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
+#gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
 
 gem 'tzinfo-data'
 
