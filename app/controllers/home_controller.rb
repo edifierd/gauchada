@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-  	@favor = Favor.all.order('id DESC')
+  	@favor = Favor.all.where("estado='t'").order('id DESC')
+  	#
   end
 end

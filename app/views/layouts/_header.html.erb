@@ -40,18 +40,25 @@
 
   			<% if current_user %> 
 
-  				<li role="presentation"><a href="#">Buscar Gauchada</a></li>
-
   				<li role="presentation"
   					<%- if controller_name == 'favors' %> class="active" <% end %> >
   					<%= link_to "Publicar Gauchada", new_favor_path() , action: "new" %>
   				</li>	
 
-  				<li role="presentation"><%= link_to "Perfil" , current_user %></li>
+  				<li role="presentation"
+            <%- if controller_name == 'users' %> class="active" <% end %> >
+            <%= link_to "Perfil" , current_user %>
+          </li>
 
   				<li role="presentation">
-				<%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
-				</li>
+				    <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
+				  </li>
+
+          <% if current_user.has_role? :admin %>
+            <li role="presentation">
+              <%= link_to 'Configuraciones', "new_user_registration_path" %>
+            </li>
+          <% end %>
 			<% else %>
 				
 				<li role="presentation" 
@@ -62,12 +69,7 @@
 				<li role="presentation" 
 					<%- if controller_name == 'registrations' %> class="active" <% end %> >
     			<%= link_to 'Registrarse', new_user_registration_path %>
-    			</li>
-    			<li role="presentation" 
-					<%- if controller_name == 'registrations' %> class="active" <% end %> >
-    			<%= link_to 'Configuraciones', "new_user_registration_path" %>
-    			</li>
-
+    		</li>
 			<% end %>
 		</ul>
 	</div>

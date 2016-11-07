@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top: 35px;">
 	<div class="col-md-5">
 		<% if @user.genre=="Masculino"%>
 			<%= image_tag "user_predef_hombre.png" , style:"height: 350px;", class:"img-responsive" %>
@@ -19,7 +19,8 @@
 				<p><%= @user.age%> </p>
 			</div>
 		</div>
-		<% if current_user.id==@user.id %>
+		<% if current_user %>
+			<% if current_user.id==@user.id %>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<b><h4>Correo</h4></b>
@@ -27,6 +28,7 @@
 				</div>
 			</div>
 			<%end%>
+		<%end%>
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<b><h4>Cantidad de eslabones</h4></b>

@@ -4,18 +4,20 @@ class Ability
   def initialize(user)
 
     #Todos los permisos CRUD
-    alias_action :create, :read, :update, :destroy, :to => :crud 
+    alias_action :create, :read, :update, :destroy, :to => :crud
+    alias_action :create, :read, :destroy, :to => :crd 
     alias_action :create, :read, :to => :cr
     alias_action :update, :destroy, :to => :ud
+
     #Cuando el Usuario No esta registrado
     user ||= User.new  
 
-    if (user.has_role? :usuario) 
-        can :crud, :all
-        
+    if (user.has_role? :usuario)  
         can :crud , User , :id => user.id
-        can :crud , Favor , :user_id => user.id
-        can :read , Favor
+        
+        can :ud, Favor , :user_id => user.id
+        can :cr, Favor
+        
         can :read , Ranking
         cannot :create, Ranking
         cannot :update, Ranking
