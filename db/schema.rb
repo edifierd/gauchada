@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20161104154657) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,12 +29,22 @@ ActiveRecord::Schema.define(version: 20161104154657) do
     t.string   "titulo"
     t.string   "ubicacion"
     t.text     "descripcion"
+
     t.string   "estado"
     t.datetime "fecha"
     t.integer  "user_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "foto",        default: ""
+
+  end
+
+  create_table "logros", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "valormin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
   end
 
   create_table "offers", force: :cascade do |t|

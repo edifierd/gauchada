@@ -2,6 +2,21 @@ Rails.application.routes.draw do
 
 
 
+  get 'ranking/create'
+
+  get 'ranking/edit'
+
+  get 'ranking/update'
+
+  get 'ranking/destroy'
+
+  get 'ranking/show'
+
+  get 'ranking/new'
+
+  get 'ranking/index'
+
+
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -9,7 +24,7 @@ Rails.application.routes.draw do
   resources :users
   resources :favors
 
-
+resources :ranking
   resources :users
 
 

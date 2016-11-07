@@ -2,12 +2,12 @@ source 'http://rubygems.org'
 
 # Manejo de usuarios
 gem 'devise'
+# bcrypt
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 
 # Manejo de roles / permisos
 gem 'cancancan'
 gem 'rolify'
-
-gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
 
 gem 'tzinfo-data'
 
