@@ -8,13 +8,18 @@ Rails.application.routes.draw do
 
   get 'ranking/edit'
 
-  #get 'ranking/delete'
-
   get 'ranking/index'
 
   get 'ranking/id'
 
   post 'ranking/create'
+
+  get 'ranking/update'
+
+  get 'ranking/destroy'
+
+  get 'ranking/show'
+
 
   root 'home#index'
 
@@ -22,9 +27,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :favors
-  resources :ranking
-  resources :users
 
+resources :ranking
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

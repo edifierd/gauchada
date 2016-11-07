@@ -34,6 +34,7 @@ development:
   username: postgres
   password: manfredoo1
 
+
 test:
   adapter: postgresql
   encoding: unicode

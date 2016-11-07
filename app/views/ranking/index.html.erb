@@ -18,11 +18,9 @@
     </div>
   </div>
 <% @rankings.each do |ranking| %>
-
-
-
-  <div class="row">
+ <div class="row">
     <div class="col-sm-2">
+
       <%  if can? :update, Ranking %>
         <pre style="text-align:center; "><a href=/ranking/<%=ranking.id%>> <%=ranking.titulo%> </a></pre>
       <% else %>
@@ -34,4 +32,5 @@
     </div>
   </div>
 <%end %>
-  
+</div>
+

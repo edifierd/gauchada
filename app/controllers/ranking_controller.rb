@@ -1,7 +1,7 @@
 class RankingController < ApplicationController
   
   def index
-  	@rankings = Ranking.all
+   @rankings = Ranking.all;
   end
 
   def show
@@ -75,10 +75,10 @@ def update
         flash[:danger] = "Ya existe un logro con ese nombre o eslabones necesarios."
         redirect_to (:back)
       end
-    else
+      else
       flash[:danger] = "Este Logro no se puede editar"
       redirect_to ("/ranking/index")
+      end
     end
   end
-end
 end
