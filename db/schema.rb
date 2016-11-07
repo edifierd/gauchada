@@ -13,9 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20161104154657) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buys", force: :cascade do |t|
+    t.integer  "cantidad_eslabones"
+    t.decimal  "costo_eslabon"
+    t.datetime "fecha"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "comentarios", force: :cascade do |t|
+    t.string   "cuerpo"
+    t.integer  "uer_id"
+    t.integer  "gauchadaa_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "cuerpo"
@@ -29,7 +45,6 @@ ActiveRecord::Schema.define(version: 20161104154657) do
     t.string   "titulo"
     t.string   "ubicacion"
     t.text     "descripcion"
-
     t.string   "estado"
     t.datetime "fecha"
     t.integer  "user_id"
@@ -38,12 +53,17 @@ ActiveRecord::Schema.define(version: 20161104154657) do
     t.string   "foto",        default: ""
   end
 
-  create_table "logros", force: :cascade do |t|
-    t.string   "nombre"
-    t.integer  "valormin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
+  create_table "gauchadaas", force: :cascade do |t|
+    t.string   "ad"
+    t.string   "titulo"
+    t.string   "ubicacion"
+    t.text     "descripcion"
+    t.string   "foto"
+    t.integer  "estado"
+    t.datetime "fecha"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -53,6 +73,15 @@ ActiveRecord::Schema.define(version: 20161104154657) do
     t.integer  "favor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ofrecimientos", force: :cascade do |t|
+    t.integer  "estado"
+    t.text     "mensaje"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.integer  "gauchadaa_id"
   end
 
   create_table "pays", force: :cascade do |t|

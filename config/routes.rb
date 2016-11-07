@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'admin_panel/index'
+
   get 'users/passForm'
   post 'users/passReset'
   get 'users/passReset'
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
   resources :users
   resources :favors
   resources :ranking
+  resources :admin_panel
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

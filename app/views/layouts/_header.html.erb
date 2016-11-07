@@ -55,8 +55,9 @@
 				  </li>
 
           <% if current_user.has_role? :admin %>
-            <li role="presentation">
-              <%= link_to 'Configuraciones', "new_user_registration_path" %>
+            <li role="presentation" 
+              <%- if controller_name == 'admin_panel' %> class="active" <% end %> >
+              <%= link_to 'Configuraciones', "/admin_panel" %>
             </li>
           <% end %>
 			<% else %>
