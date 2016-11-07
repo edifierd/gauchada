@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-2">
+    <h1>Logros</h1>
+  </div>
+    <% if can? :create, Ranking %>
+       <div class="col-sm-2" style='margin-top:20px'>
+       <%= link_to "Nuevo Logro", new_ranking_path(@ranking), class: 'btn btn-success btn-md'%>  
+      </div>
+    <%end %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+     <h4 style="text-align:center;"">  Titulo </h4>
+    </div>
+    <div class="col-sm-3">
+      <h4> Eslabones necesarios</h4>
+    </div>
+  </div>
+<% @rankings.each do |ranking| %>
+ <div class="row">
+    <div class="col-sm-2">
+
+      <%  if can? :update, Ranking %>
+        <pre style="text-align:center; "><a href=/ranking/<%=ranking.id%>> <%=ranking.titulo%> </a></pre>
+      <% else %>
+        <pre style="text-align:center;""><%= ranking.titulo%></pre>
+      <% end %>
+    </div>
+    <div class="col-sm-2">
+      <pre style="text-align:center;""><%= ranking.cantidad_eslabones%></pre>	
+    </div>
+  </div>
+<%end %>
+</div>
+

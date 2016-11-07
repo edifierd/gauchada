@@ -1,0 +1,28 @@
+<h1>Logro</h1>
+
+
+  <div class="row">
+    <div class="col-sm-2">
+     <h4 style="text-align:center;"">  Titulo </h4>
+    </div>
+    <div class="col-sm-3">
+      <h4> Eslabones necesarios</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+
+     <pre style="text-align:center; "><%= @ranking.titulo %></pre> 
+    </div>
+    <div class="col-sm-3">
+      <pre style="text-align:center;""><%= @ranking.cantidad_eslabones%></pre>	
+    </div>
+    <div class="col-sm-3">
+       <%= link_to "Editar", edit_ranking_path(@ranking), class: 'btn btn-success btn-md'%>	
+    </div>
+    <div class="col-sm-3">
+      	
+    <%= link_to "Eliminar", @ranking , method: :delete, class: 'btn btn-success btn-md'%> 
+    </div>
+  </div>
+  

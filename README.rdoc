@@ -21,3 +21,11 @@ La siguente imagen corresponde al Diagrama Entidad Relacion del modelado concept
 <b>Plan de Gestión de Proyecto:</b>
 
 * Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/segundaEntrega/PGP.pdf)
+
+<b>PGP - Anexo de Administracion del Tratamiento de Riesgos:</b>
+
+* Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/tercerEntrega/Riesgos2016.pdf)
+
+<b>Documento de Diseño de Interfaces:</b>
+
+* Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/tercerEntrega/Riesgos2016.pdf)

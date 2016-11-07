@@ -12,17 +12,21 @@ class Ability
 
     if (user.has_role? :usuario) 
         can :crud, :all
-        #cannot :crud , CouchType
+        
         can :crud , User , :id => user.id
         can :crud , Favor , :user_id => user.id
         can :read , Favor
-        #can :crud, Reservation
+        can :read , Ranking
+        cannot :create, Ranking
+        cannot :update, Ranking
+        cannot :destroy, Ranking
     end
     if user.has_role? :admin
         can :crud, User
         #can :crud, CouchType
         can :crud, Favor
         #can :crud, Reservation
+        can :crud, Ranking
     else 
         #can :read, Couch
     end

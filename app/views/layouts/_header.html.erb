@@ -63,6 +63,10 @@
 					<%- if controller_name == 'registrations' %> class="active" <% end %> >
     			<%= link_to 'Registrarse', new_user_registration_path %>
     			</li>
+    			<li role="presentation" 
+					<%- if controller_name == 'registrations' %> class="active" <% end %> >
+    			<%= link_to 'Configuraciones', "new_user_registration_path" %>
+    			</li>
 
 			<% end %>
 		</ul>

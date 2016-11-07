@@ -3,6 +3,25 @@ Rails.application.routes.draw do
   get 'users/passForm'
   post 'users/passReset'
   get 'users/passReset'
+
+  get 'ranking/destroy/id'
+
+  get 'ranking/new'
+
+  get 'ranking/edit'
+
+  get 'ranking/index'
+
+  get 'ranking/id'
+
+  post 'ranking/create'
+
+  get 'ranking/update'
+
+  get 'ranking/destroy'
+
+  get 'ranking/show'
+
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -10,7 +29,6 @@ Rails.application.routes.draw do
   resources :users
   resources :favors
   resources :ranking
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
