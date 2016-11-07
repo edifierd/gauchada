@@ -11,18 +11,22 @@ class Ability
     user ||= User.new  
 
     if (user.has_role? :usuario) 
-        can :read, :all
-        #cannot :crud , CouchType
-        #can :crud , User , :id => user.id
-        #can :cr , Couch
-        #can :ud , Couch , :user_id => user.id
-        #can :crud, Reservation
+        can :crud, :all
+        
+        can :crud , User , :id => user.id
+        can :crud , Favor , :user_id => user.id
+        can :read , Favor
+        can :read , Ranking
+        cannot :create, Ranking
+        cannot :update, Ranking
+        cannot :destroy, Ranking
     end
     if user.has_role? :admin
         can :crud, User
         #can :crud, CouchType
-        #can :crud, Couch
+        can :crud, Favor
         #can :crud, Reservation
+        can :crud, Ranking
     else 
         #can :read, Couch
     end

@@ -1,0 +1,2 @@
+module GauchadaHelper
+end

@@ -4,32 +4,51 @@
 	.nav > li > a:focus, .nav > li > a:hover {
     	background-color: #F27321;
     	color: #FFF;
+    	border-radius: 0px;
+    	margin-right: 3px;
+    	margin-left: 3px;
+	}
+
+	.nav > li > a{
+		margin-right: 3px;
+    		margin-left: 3px;
+	}
+
+	.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    		color: #fff;
+            background-color: #F27321;
+            border-radius: 0px;
+            margin-right: 3px;
+    		margin-left: 3px;
 	}
 </style>
 
-<div class="row" >
-	<div class="col-md-12">
+
 		<%= link_to "/" do %>
-			<%= image_tag "eslogan.png" , style:"height: 170px;", class:"img-responsive" %>
+			<%= image_tag "eslogan.png" , class:"img-responsive" %>
 			
 		<% end %>
-	</div>
-</div>
-<div class="row" style="background-color: #000; padding-top: 6px; padding-bottom: 6px;">
-	<div class="col-md-12">
-		<ul class="nav nav-pills nav-justified" 
-			style="margin-right: 10px; margin-left:10px;">
 
+<div class="row" style="background-color: #000; padding-top: 6px; padding-bottom: 6px; margin-right: 0px;">
+	<div class="col-sm-12 col-md-12">
+		<ul class="nav nav-pills nav-justified" >
 
-  			<li role="presentation" >
+  			<li role="presentation" 
+  				<%- if controller_name == 'home' %> class="active" <% end %> >
   				<a href="/">Home</a>
   			</li>
 
   			<% if current_user %> 
 
   				<li role="presentation"><a href="#">Buscar Gauchada</a></li>
-  				<li role="presentation"><a href="#">Perfil</a></li>
-  				<li role="presentation"><a href="#">Publicar Guachada</a></li>	
+
+  				<li role="presentation"
+  					<%- if controller_name == 'favors' %> class="active" <% end %> >
+  					<%= link_to "Publicar Gauchada", new_favor_path() , action: "new" %>
+  				</li>	
+
+  				<li role="presentation"><%= link_to "Perfil" , current_user %></li>
+
   				<li role="presentation">
 				<%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
 				</li>
@@ -43,6 +62,10 @@
 				<li role="presentation" 
 					<%- if controller_name == 'registrations' %> class="active" <% end %> >
     			<%= link_to 'Registrarse', new_user_registration_path %>
+    			</li>
+    			<li role="presentation" 
+					<%- if controller_name == 'registrations' %> class="active" <% end %> >
+    			<%= link_to 'Configuraciones', "new_user_registration_path" %>
     			</li>
 
 			<% end %>

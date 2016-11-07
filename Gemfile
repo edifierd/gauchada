@@ -9,7 +9,6 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'cancancan'
 gem 'rolify'
 
-# timezones
 gem 'tzinfo-data'
 
 # Ver consultas a modelos en tablas

@@ -1,0 +1,53 @@
+
+<div class="panel panel-default" style="margin-top: 20px;">
+  <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-10"> <h3><%= @favor.titulo %></h3> </div>
+        <div class="col-md-2">
+          <% if current_user and can? :update, @favor %>
+          <%= link_to "Editar", edit_favor_path(@favor), class: 'btn btn-success btn-md',
+          style:"margin-top:10px;"%>
+        </div>
+      </div>
+      <% else %>
+        <%= link_to "Ofrecerse", reservation_path, class: 'btn btn-success btn-md',
+          style:"margin-top:10px;" %>
+      <% end %>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+	<div class="col-xs-5 col-sm-5 col-md-5">
+	<% if @favor.foto == '' %>
+        <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  style:"max-width: 320px; margin-rigth:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        <% else %>
+             <%= image_tag @favor.foto , :alt => "Foto",  
+                style:"max-width: 320px; margin-rigth:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        <% end %>
+	</div>
+	<div class="col-xs-7 col-sm-7 col-md-7">
+		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Descripciòn</b><br>
+    		<h4><%= @favor.descripcion %></h4>
+  		</div>
+  		</div>
+
+  		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Ubicacion</b><br>
+    		<h4><%= @favor.ubicacion %></h4>
+  		</div>
+  		</div>
+
+  		<div class="panel panel-default">
+		<div class="panel-body">
+			<b>Propietario</b><br>
+    		<h4><%= link_to (@favor.user.first_name + @favor.user.last_name) , @favor.user %></h4>
+  		</div>
+  		</div> 
+	</div>
+</div>
+  </div>
+</div>
+
+

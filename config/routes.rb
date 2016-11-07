@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
 
 
+
+  get 'ranking/destroy/id'
+
+  get 'ranking/new'
+
+  get 'ranking/edit'
+
+  #get 'ranking/delete'
+
   get 'ranking/index'
 
-  get 'ranking/show'
+  get 'ranking/id'
+
+  post 'ranking/create'
 
   root 'home#index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-
-  
+  resources :users
+  resources :favors
+  resources :ranking
+  resources :users
 
 
   # The priority is based upon order of creation: first created -> highest priority.

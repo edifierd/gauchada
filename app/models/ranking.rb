@@ -1,5 +1,5 @@
 class Ranking < ActiveRecord::Base
-	validates :titulo,presence:true,uniqueness:true
-	validates :cantidad_eslabones,presence:true,uniqueness:true
+	validates_uniqueness_of :titulo
+	validates_uniqueness_of :cantidad_eslabones
 	default_scope ->{order("cantidad_eslabones")}
 end

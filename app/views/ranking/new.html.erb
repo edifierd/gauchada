@@ -1,0 +1,37 @@
+
+<style type="text/css">
+  .mensaje{
+    margin: 25px;
+    width: 650px;
+    height: auto;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+</style> 
+
+<h1> Crear un Logro </h1>
+
+<%= form_for @ranking , url: {action:"create"} do |r| %>
+  <table class="table">
+    <tr>
+      <td><%= r.label :titulo %></td>
+      <td>
+      <%= r.text_field :titulo, label: 'titulo', placeholder: 'Ingrese el titulo' , :required => true , size: 50 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= r.label :cantidad_eslabones %></td>
+      <td>
+      <%= r.text_area :cantidad_eslabones, class: 'form-control', label: 'Eslabones ncesarios', placeholder: 'Ingrese la cantidad de eslabones necesarios' , :required => true %>
+        </td>
+    </tr> 
+
+    <tr>
+      <td colspan="2" align="center" >
+        <%= r.submit "Dar de alta", class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
