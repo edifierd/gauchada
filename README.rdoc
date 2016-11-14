@@ -28,4 +28,4 @@ La siguente imagen corresponde al Diagrama Entidad Relacion del modelado concept
 
 <b>Documento de Diseño de Interfaces:</b>
 
-* Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/tercerEntrega/Riesgos2016.pdf)
+* Accceda al documento: [Ver](https://github.com/edifierd/gauchada/blob/master/README.doc/tercerEntrega/Interfaz2016.pdf)
