@@ -5,12 +5,22 @@ class UsersController < ApplicationController
 
   def show
   	@user=User.find(params[:id])
-  	 Ranking.all.each do |ranking| 
-					if(ranking.cantidad_eslabones<= @user.eslabon )
-						@a = ranking.titulo 
-					end
-
+  	Ranking.all.each do |ranking| 
+			if(ranking.cantidad_eslabones <= @user.eslabon )
+				@a = ranking.titulo 
+			end
   	end
+    @favores = @user.favors.order('id DESC')
+  end
+
+  def edit    
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to "/"
   end
 
   def passReset

@@ -1,10 +1,11 @@
 
+<% if current_user %>
 <br>
-<h1>Bienvenido a Gauchada</h1>
-<p>La cadena de favores mas grande de toda America</p>
+<h1>Bienvenido <%= current_user.first_name %> a Gauchada</h1>
+<% end %>
 
 
-<table class="table">
+<table class="table" style="margin-top: 15px;">
       <tr>
       <td colspan="2"><h3> Listado de Favores </h3></td>
       <td colspan="1"> 

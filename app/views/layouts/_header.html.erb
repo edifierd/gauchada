@@ -47,7 +47,7 @@
 
   				<li role="presentation"
             <%- if controller_name == 'users' %> class="active" <% end %> >
-            <%= link_to "Perfil" , current_user %>
+            <%= link_to "Perfil de "+current_user.first_name , current_user %>
           </li>
 
   				<li role="presentation">

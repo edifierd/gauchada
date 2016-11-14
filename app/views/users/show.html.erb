@@ -1,63 +1,169 @@
-<div class="row" style="margin-top: 35px;">
-	<div class="col-md-5">
-		<% if @user.genre=="Masculino"%>
-			<%= image_tag "user_predef_hombre.png" , style:"height: 350px;", class:"img-responsive" %>
-		<%else%>
-			<<%= image_tag "user_predef_mujer.png" , style:"height: 350px;", class:"img-responsive" %>
-		<%end%>
+<script type="text/javascript">
+	function muestra_oculta(contenido){
+		document.getElementById("favores").style.display = "none";
+		
+		document.getElementById(contenido).style.display = "block";
+
+	}
+</script>
+
+<style type="text/css">
+  p{ 
+	font-size: 17px;
+	margin-left: 15px;
+  }	
+
+  .marcoUser{
+  	padding: 50px; 
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #D8D8D8; 
+	margin-right:30px; 
+	margin-left:30px;
+	margin-top: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+  }
+
+  .barraBotones{
+  	background-color:#F2F2F2; 
+  	margin-top:15px; 
+  	margin-bottom:15px; 
+  	padding-top: 7px; 
+  	padding-bottom: 7px;
+  }
+
+  .barraElemento{
+  	padding: 50px; 
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #D8D8D8; 
+	margin-right:30px; 
+	margin-left:30px;
+	margin-bottom:20px;
+	display:none;
+  }
+
+</style>
+	
+
+<!-- DATOS DE USUARIO -->
+
+<div class="row marcoUser">     
+	<div class="row">
+		<div class="col-md-8">
+			<% if current_user %>
+			<% if current_user.id == @user.id %>
+				<h2>Mi Perfil</h2>
+			<% else %>
+				<h2><%= @user.first_name+" "+@user.last_name%> Perfil</h2>
+			<% end %>
+			<% end %>
+		</div>
+		<div class="col-md-2" style="margin-top: 20px">
+		<% if current_user and can? :update, @user %>
+			<!--agregar un favor-->
+		<% end %>
+		</div>
+		<div class="col-md-2" style="margin-top: 20px">
+		<% if current_user and can? :update, @user %>
+			<%= link_to 'Modificar Datos', edit_user_registration_path, class: 'btn btn-primary' %>
+		<% end %>
+		</div>
 	</div>
-	<div class="col-md-7">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<b><h4>Nombre</h4></b>
-				<p><%= @user.first_name + " " + @user.last_name%> </p>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<b><h4>Edad</h4></b>
-				<p><%= @user.age%> </p>
-			</div>
-		</div>
-		<% if current_user %>
-			<% if current_user.id==@user.id %>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<b><h4>Correo</h4></b>
-					<p><%= @user.email%></p>
-				</div>
-			</div>
-			<%end%>
-		<%end%>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<b><h4>Cantidad de eslabones</h4></b>
-				<p><%= @user.eslabon %> </p>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<b><h4>Logro</h4></b> 
-				<p><%= link_to @a, ranking_index_path %> </p>
-			</div>
-		</div>
+
+	<div class="row" style="background-color:#F2F2F2">
+	  	<div class="row">
+	  		<div class="col-md-2" style="margin-top: 35px;">
+	  			<% if @user.genre=="Masculino"%>
+				<%= image_tag "user_predef_hombre.png" , size: "120x120", class:"img-responsive", style: "margin-right:auto; margin-left:auto;"%>
+				<%else%>
+				<<%= image_tag "user_predef_mujer.png" , size: "120x120", class:"img-responsive" %>
+				<%end%>
+	  		</div>
+	  		<div class="col-md-10">
+	  		<div class="row">
+	  		<div class="col-md-12" style="margin-top: 20px">
+	  			<p><i>Nombre y Apellido:  </i><b><%= @user.first_name+" "+@user.last_name%></b></p>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-md-12"><p><i>Edad:</i> <%= @user.age %> </p></div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  		<p><i>Genero:</i> <%= @user.genre %></p>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  		<p><i>Logro:</i> <%= link_to @a, ranking_index_path %> </p>
+	  		</div>
+	  	</div>
+
+
+	  	
+	</div>
+	</div>
+	</div>
+
+	<div class="row barraBotones">
+		<ul class="nav nav-pills nav-justified" >
+  			<li role="presentation">
+  				<a onclick="muestra_oculta('favores')" >Mis Gauchadas</a>
+  			</li>
+
+  			<li role="presentation">
+  				<a onclick="muestra_oculta('postulaciones')" >
+  					Postulaciones
+  				</a>
+  			</li>
+
+  			<li role="presentation">
+  				<a  onclick="muestra_oculta('misFavores')">
+  					Gauchadas Realizadas
+  				</a>
+  			</li>
+		</ul>
 	</div>
 </div>
 
 
+<!-- CALIFICACIONES DADAS A OTROS USUARIOS -->
 
+<div id="favores" class="row barraElemento" >     
+	<div class="row">
+		<div class="col-md-12"><h2>Mis Favores Publicados</h2></div>
+	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<div class="row" style="background-color:#F2F2F2">
+		<div class="col-md-12">
+			<table class="table">
+				<tr>
+            		<th> Foto </th>
+            		<th> Titulo</th>
+            		<th> Ubicacion</th>
+            		<th> Descripción </th>
+      			</tr>
+      		<% @favores.each do |favor| %>
+            	<tr>
+                	<td> 
+                <%= link_to favor do %>
+                    <% if favor.foto == '' %>
+                        <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
+                        <% else %>
+                              <%= image_tag favor.foto , :alt => "Foto",  
+                              height: 'auto', width: '70', style:"" %>
+                        <% end %>
+                    <% end %>
+                  	</td>
+                  	<td> <%= link_to favor.titulo, favor %> </td>
+                  	<td> <%= link_to favor.ubicacion, favor %> </td>
+                  	<td> <%= link_to favor.descripcion, favor %> </td>
+           		</tr>
+      		<% end %>
+			</table>
+		</div>
+	</div>
+</div>
 
