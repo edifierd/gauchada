@@ -7,7 +7,7 @@
           <% if current_user and can? :update, @favor %>
             <%= link_to "Editar", edit_favor_path(@favor), class: 'btn btn-success btn-md',
             style:"margin-top:10px;"%>
-          <% else %>
+          <% elsif current_user %>
             <%= link_to "Ofrecerse", '#', class: 'btn btn-success btn-md',
             style:"margin-top:10px;" %>
           <% end %>
