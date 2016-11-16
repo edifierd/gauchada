@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'notificaciones/index'
+
   get 'admin_panel/index'
 
   get 'users/passForm'
