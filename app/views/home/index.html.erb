@@ -1,19 +1,50 @@
 
 <% if current_user %>
 <br>
-<h1>Bienvenido <%= current_user.first_name %> a Gauchada</h1>
+<h1>Bienvenido <%= current_user.first_name %> a Gauchada </h1>
 <% end %>
 
+<div class="row" style="margin-top: 15px; margin-bottom: 15px;">
+      <div class="col-sm-3">
+            <h4>Seleccionar Ubicaciòn</h4>
+      </div>
+      <div class="col-sm-9">
+      <%= form_tag("/", method: "get") do %>
+      <select name="ubicacion" id="ubicacion">
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Buenos Aires Capital">Buenos Aires Capital</option>
+          <option value="Catamarca">Catamarca</option>
+          <option value="Chaco">Chaco</option>
+          <option value="Chubut">Chubut</option>      
+          <option value="Cordoba">Cordoba</option>
+          <option value="Corrientes">Corrientes</option>
+          <option value="Entre Rios">Entre Rios</option>
+          <option value="Formosa">Formosa</option>
+          <option value="Jujuy">Jujuy</option>
+          <option value="La Pampa">La Pampa</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Misiones">Misiones</option>
+          <option value="Neuquen">Neuquen</option>
+          <option value="Rio Negro">Rio Negro</option>
+          <option value="Salta">Salta</option>
+          <option value="San Juan">San Juan</option>
+          <option value="San Luis">San Luis</option>
+          <option value="Santa Cruz">Santa Cruz</option>
+          <option value="Santa Fe">Santa Fe</option>
+          <option value="Santiago del Estero">Santiago del Estero</option>
+          <option value="Tierra del Fuego">Tierra del Fuego</option>
+          <option value="Tucuman">Tucuman</option>
+        </select>
+        <%= submit_tag("BUSCAR", class: "btn btn-info", style: "margin-left: 15px;")  %>
+      <% end %>
+      </div>
+</div>
 
+<h3> Listado de Gauchadas <%= @ubicacion %> </h3>
+
+<% if @favor.count > 0 %>
 <table class="table" style="margin-top: 15px;">
-      <tr>
-      <td colspan="2"><h3> Listado de Favores </h3></td>
-      <td colspan="1"> 
-      <% if current_user and can? :create, Favor %>
-                  <%= link_to "Agregar", new_favor_path() , class: 'btn btn-success btn-sm',  action: "new"%>
-            <% end %>
-      </td>
-      <td colspan="2"></td>
       <tr>
             <th> Foto </th>
             <th> Titulo</th>
@@ -40,7 +71,48 @@
                   <td> <%= link_to favor.user.first_name, favor.user %> </td>
             </tr>
       <% end %>
-
-
 </table>
+<% else %>
+<style type="text/css">
+      .boton{
+            border: 2px solid #000 ;
+            border-radius: 15px;
+            margin: 30px;
+            padding: 20px;
+            text-align: center;
+            color: #000;
+      }
+      .boton:hover{
+            border: 2px dotted #000 ;
+            border-radius: 15px;
+            margin: 30px;
+            padding: 20px; 
+            text-decoration: none;
+            text-align: center;
+            color: #F27321;
+      }
+</style>
+<div class="row" style="margin-right:auto; margin-left:auto;"">
+      <div class="col-sm-12" style="text-align: center;">
+            <h2 class="alert alert-warning">No se han encontrado gauchadas <%= @ubicacion %></h2>
+      </div>
+      <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 15px;">
+            <h2 >Quizas te puedan interesar alguno de nuestros destacados: </h2>
+      </div>
+      <% @destacados.each do |favor| 
+            url = 'favors/'+favor.id.to_s
+      %>
+            <a href="<%= url %>" class="col-sm-3 boton">
+                  <% if favor.foto == '' %>
+                         <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto", class: "img-responsive", style: "max-height: 200px; margin-right:auto; margin-left:auto;" %>
+                  <% else %>
+                         <%= image_tag favor.foto , :alt => "Foto",  
+                              height: 'auto', width: 'auto', class: "img-responsive", style: "max-height: 300px; margin-right:auto; margin-left:auto;"  %>
+                  <% end %>
+                  <h2><%= favor.titulo %></h2>
+                  <h3><%= favor.ubicacion %></h3>
+            </a>
+      <% end %>
+</div>
+<% end %>
 
