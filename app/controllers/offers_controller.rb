@@ -1,10 +1,29 @@
 class OffersController < ApplicationController
 
-  def edit
-  	favor = Favor.find(params[:id]) 
-  	flash[:danger] = "Se ha creado el ofrecimiento"+favor.titulo
-    redirect_to ("/")
-  end
+	def new
+		favor = Favor.find(params[:id].to_i) 
+		offer = Offer.new
+		offer.cuerpo = params[:mensaje]
+		offer.user = current_user
+		offer.favor = favor
+		if offer.save
+  			flash[:success] = "Te postulaste correctamente a esta gauchada."
+      	else
+      		flash[:danger] = "Algo salio mal, no te has podido postular."
+      	end
+      	redirect_to (:back)
+	end
+
+
+
+	def edit
+  		@favor = Favor.find(params[:id]) 
+  		@offer = Offer.new
+  	end
+
+  	def crear(favor)
+
+  	end
 
 
 

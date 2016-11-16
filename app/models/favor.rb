@@ -4,4 +4,11 @@ class Favor < ActiveRecord::Base
 	belongs_to :user
 	
 	validates_uniqueness_of :titulo
+
+	def postulado(id)
+		if self.offers.where("user_id = "+id.to_s).count > 0
+			return true
+		end
+		return false
+	end
 end

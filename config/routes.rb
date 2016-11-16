@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'offers/new'
 
   get 'admin_panel/index'
 
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
   resources :users
   resources :favors
   resources :offers
+  post 'offers/new'
   resources :ranking
   resources :admin_panel
 

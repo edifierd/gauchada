@@ -1,0 +1,17 @@
+
+<%= form_for @offer , url: {action:"create"} do |f| %>
+	<table class="table">
+		<%= f.hidden_field :favor_id, :value => @favor.id %>
+    	<tr>
+     		<td><%= f.label :Mensaje %></td>
+      		<td>
+      		<%= f.text_area :cuerpo, class: 'form-control', label: 'Cuerpo del mensaje', placeholder: 'Ingrese su mensaje ' , :required => true %>
+        	</td>
+    	</tr>
+    	<tr>
+        	<td colspan="2" align="center" >
+        		<%= f.submit "Enviar Postulacion", class: 'btn btn-primary' %>
+      		</td>
+    	</tr>
+    </table>
+<% end %>

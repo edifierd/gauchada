@@ -2,15 +2,33 @@
 <div class="panel panel-default" style="margin-top: 20px;">
   <div class="panel-heading">
       <div class="row">
-        <div class="col-md-10"> <h3><%= @favor.titulo %></h3> </div>
-        <div class="col-md-2">
-          <% if current_user and can? :update, @favor %>
+        <% if current_user and can? :update, @favor %>
+          <div class="col-md-10"> <h3><%= @favor.titulo %></h3></div>
+          <div class="col-md-2">
             <%= link_to "Editar", edit_favor_path(@favor), class: 'btn btn-danger btn-md',
             style:"margin-top:10px;"%>
-          <% elsif current_user %>
-            <%= link_to "Ofrecerse", edit_offer_path(@favor), class: 'btn btn-info btn-md',
-            style:"margin-top:10px;"%>
-          <% end %>
+          </div>
+        <% elsif current_user %>
+          <div class="col-md-7"> <h3><%= @favor.titulo %></h3></div>
+            <% if !@favor.postulado(current_user.id) %>
+            <%= form_tag("/offers/new") do %>
+              <%= hidden_field_tag(:id, @favor.id) %>
+              <div class="col-md-3">
+                <%= label_tag(:mensaje, "Mensaje de Postulacion:") %>
+                <%= text_field_tag(:mensaje,"",style: "margin:4px; width:100%; height:50px;",:required => true) %>
+              </div>
+              <div class="col-md-2">
+                <%= submit_tag("Postularse", class: 'btn btn-info btn-md', style:"margin-top:35px;") %>
+              </div>
+            <% end %>
+            <% else %>
+              <div class="col-md-5">
+                <h3 style="color:green;"> ¡Estas postulado a esta gauchada!</h3>
+              </div>
+            <% end %>
+        <% else %>
+          <div class="col-md-12"> <h3><%= @favor.titulo %></h3></div>
+        <% end %>
         </div>
       </div>
   </div>
