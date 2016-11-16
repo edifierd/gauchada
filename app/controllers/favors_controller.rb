@@ -22,7 +22,7 @@ class FavorsController < ApplicationController
         redirect_to (:back)
       end
     else 
-      flash[:danger] = "No tienes màs eslabones. Compra mas para poder publicar"
+      flash[:danger] = "No tienes más eslabones. Comprá más para poder publicar"
       redirect_to ("/")
     end
    end
@@ -58,5 +58,28 @@ class FavorsController < ApplicationController
         flash[:danger] = "Ya existe una gauchada con ese nombre o se produjo un error."
         redirect_to (:back)
     end
+  end
+
+  def destroy
+    if can? :destroy, Favor
+      favor = Favor.find(params[:id])
+      if favor.user_id == current_user.id
+        favor.estado = 'f'
+        if favor.save
+          flash[:success] = "La gauchada se ha cancelado exitosamente"
+          redirect_to ("/")
+        else
+          flash[:danger] = "La gauchada no se pudo cancelar"
+          redirect_to (:back)
+        end
+      else
+        flash[:danger] = "Solo se pueden eliminar las gauchadas propias"
+        redirect_to (:back)
+      end
+    else 
+      flash[:danger] = "No cuenta con los permisos para eliminar."
+      redirect_to (:back)
+    end
+ 
   end
 end

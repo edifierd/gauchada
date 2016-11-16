@@ -31,8 +31,8 @@ development:
   database: appname_development
   pool: 5
   timeout: 5000
-  username: federico
-  password: 123456789
+  username: postgres
+  password: manfredoo1
 
 test:
   adapter: postgresql
@@ -40,5 +40,5 @@ test:
   database: appname_test
   pool: 5
   timeout: 5000
-  username: federico
-  password: 123456789
+  username: postgres
+  password: manfredoo1

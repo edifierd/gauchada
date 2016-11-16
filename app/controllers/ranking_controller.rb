@@ -45,7 +45,7 @@ class RankingController < ApplicationController
 def destroy
   if can? :destroy, Ranking 
     ranking = Ranking.find(params[:id])
-   if ranking.cantidad_eslabones != 0
+   if ranking.cantidad_eslabones != Ranking.first.cantidad_eslabones
     if ranking.destroy
       flash[:success] = "El Logro ha sido eliminado exitosamente."
       redirect_to ("/ranking/index")
@@ -65,7 +65,7 @@ end
 def update
   if can? :update, Ranking
     @ranking = Ranking.find(params[:id])
-    if @ranking.cantidad_eslabones != 0
+    if @ranking.cantidad_eslabones != Ranking.first.cantidad_eslabones
       @ranking.titulo = params[:ranking][:titulo]
       @ranking.cantidad_eslabones = params[:ranking][:cantidad_eslabones]
       if @ranking.save
