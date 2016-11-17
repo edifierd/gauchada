@@ -203,6 +203,8 @@
 				<tr>
             		<th> Foto </th>
             		<th> Titulo</th>
+            		<th> Usuario </th>
+            		<th> Correo de Contacto</th>
             		<th> Estado </th>
       			</tr>
       		<% current_user.offers.where("otorgado = true").each do |offer| 
@@ -220,6 +222,11 @@
                     <% end %>
                   	</td>
                   	<td> <%= link_to favor.titulo, favor %> </td>
+                  	<td> 
+                  		<% nombre = favor.user.last_name+" "+favor.user.first_name %>
+                  		<%= link_to nombre, favor.user %>
+                  	</td>
+                  	<td><%= favor.user.email %></td>
                   	<td> <%= favor.estadoActual %> </td>
             	</tr>
       		<% end %>
