@@ -58,7 +58,7 @@
                   <td> 
                   <%= link_to favor do %>
                         <% if favor.foto == '' %>
-                              <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
+                              <%= image_tag "sin.gif", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-responsive", style:"" %>
                         <% else %>
                               <%= image_tag favor.foto , :alt => "Foto",  
                               height: 'auto', width: '70', style:"" %>
@@ -72,7 +72,7 @@
             </tr>
       <% end %>
 </table>
-<% else %>
+<% elsif @destacados %>
 <style type="text/css">
       .boton{
             border: 2px solid #000 ;
@@ -104,7 +104,7 @@
       %>
             <a href="<%= url %>" class="col-sm-3 boton">
                   <% if favor.foto == '' %>
-                         <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto", class: "img-responsive", style: "max-height: 200px; margin-right:auto; margin-left:auto;" %>
+                         <%= image_tag "sin.gif", :alt => "Sin Foto", class: "img-responsive", style: "max-height: 200px; margin-right:auto; margin-left:auto;" %>
                   <% else %>
                          <%= image_tag favor.foto , :alt => "Foto",  
                               height: 'auto', width: 'auto', class: "img-responsive", style: "max-height: 300px; margin-right:auto; margin-left:auto;"  %>

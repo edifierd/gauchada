@@ -1,12 +1,12 @@
 <!--Usuario.select(date(updated_at) as ordered_date, avg(edad) as edad_avg").group("date(updated_at)").having("avg(edad) > ?", 18)-->
+<br><br>
 
-<h3> Postulaciones</h3>
-
+<% if @cantOffers > 0 %>
 <table class="table" style="text-align: center;" >
 	<tr>
 		<th style="text-align: center;"> Foto </th>
 		<th style="text-align: center;"> Titulo </th>
-		<th style="text-align: center;"> Cantidad de notificaciones </th>
+		<th style="text-align: center;"> Cantidad de Postulaciones </th>
 		<td style="text-align: center;"> Acciones</td>
 	</tr>
 	<% Offer.select('favor_id, COUNT(favor_id) as cantidad').where("visto = 'false'").group('favor_id').each do |offer| 
@@ -15,7 +15,7 @@
 			<tr>
 				<td>
 				<% if favor.foto == '' %>
-        		<%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
         		<% else %>
              	<%= image_tag favor.foto , :alt => "Foto",  
                 style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
@@ -36,3 +36,45 @@
 		<% end %>
 	<% end %>
 </table>
+<% end %>
+
+<% if @cantPostulaciones > 0 %>
+<table class="table" style="text-align: center;" >
+	<tr>
+		<th style="text-align: center;"> Foto </th>
+		<th style="text-align: center;"> Titulo </th>
+		<th style="text-align: center;"> Notificacion </th>
+		<td style="text-align: center;"> Acciones </td>
+	</tr>
+	<% current_user.offers.where("otorgado = true and vistopostulante = 'false'").each do |offer| 
+		favor = Favor.find(offer.favor_id) %>
+			<tr>
+				<td>
+				<% if favor.foto == '' %>
+        		<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% else %>
+             	<%= image_tag favor.foto , :alt => "Foto",  
+                style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% end %>
+				</td>
+				<td>
+					<%= link_to favor.titulo, favor , style: "color:#000" %>
+				</td>
+				<td>
+					Has sido seleccionado para cumplir este favor
+				</td>
+				<td>
+					<a href="/offers/marcarVistoPostulacion/<%= offer.favor_id %>" class="btn btn-warning">
+						Marcar como leida
+					</a>
+				</td>
+			</tr>
+	<% end %>
+</table>
+<% end %>
+
+<% if @cantOffers == 0 and @cantPostulaciones == 0 %>
+	<div class="alert alert-warning" role="alert" style="margin: 20px; text-align: center;">
+  		<h2> No tienes notificaciones :( <h2>
+	</div>
+<% end %>

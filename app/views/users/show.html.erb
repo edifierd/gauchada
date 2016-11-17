@@ -1,10 +1,10 @@
 <script type="text/javascript">
 	function muestra_oculta(contenido){
 		document.getElementById("favores").style.display = "none";
-		
+		document.getElementById("postulaciones").style.display = "none";
 		document.getElementById(contenido).style.display = "block";
 
-	}
+	} 
 </script>
 
 <style type="text/css">
@@ -56,7 +56,7 @@
 			<% if current_user.id == @user.id %>
 				<h2>Mi Perfil</h2>
 			<% else %>
-				<h2><%= @user.first_name+" "+@user.last_name%> Perfil</h2>
+				<h2>Perfil de <%= @user.first_name+" "+@user.last_name%></h2>
 			<% end %>
 			<% end %>
 		</div>
@@ -78,7 +78,7 @@
 	  			<% if @user.genre=="Masculino"%>
 				<%= image_tag "user_predef_hombre.png" , size: "120x120", class:"img-responsive", style: "margin-right:auto; margin-left:auto;"%>
 				<%else%>
-				<<%= image_tag "user_predef_mujer.png" , size: "120x120", class:"img-responsive" %>
+				<%= image_tag "user_predef_mujer.png" , size: "120x120", class:"img-responsive" %>
 				<%end%>
 	  		</div>
 	  		<div class="col-md-10">
@@ -100,24 +100,25 @@
 	  		<p><i>Logro:</i> <%= link_to @a, ranking_index_path %> </p>
 	  		</div>
 	  	</div>
-
-
-	  	
 	</div>
-	</div>
-	</div>
+</div>
+</div>
 
 	<div class="row barraBotones">
 		<ul class="nav nav-pills nav-justified" >
   			<li role="presentation">
-  				<a onclick="muestra_oculta('favores')" >Mis Gauchadas</a>
+  				<a onclick="muestra_oculta('favores')" >
+  					<% if current_user.id == @user.id %> Mis <% end %> Gauchadas
+  				</a>
   			</li>
 
+  			<% if current_user.id == @user.id %>
   			<li role="presentation">
   				<a onclick="muestra_oculta('postulaciones')" >
   					Postulaciones
   				</a>
   			</li>
+  			<% end %>
 
   			<li role="presentation">
   				<a  onclick="muestra_oculta('misFavores')">
@@ -130,10 +131,11 @@
 
 
 <!-- LISTADO DE MIS FAVORES -->
-
-<div id="favores" class="row barraElemento" >     
+<div id="favores" class="row barraElemento" style="display: block;">     
 	<div class="row">
-		<div class="col-md-12"><h2>Mis Favores Publicados</h2></div>
+		<div class="col-md-12">
+			<h2><% if current_user.id == @user.id %> Mis <% end %>  Gauchadas Publicadas</h2>
+		</div>
 	</div>
 
 	<div class="row" style="background-color:#F2F2F2">
@@ -145,13 +147,14 @@
             		<th> Ubicacion</th>
             		<th> Descripción </th>
             		<th> Estado </th>
+            		<th> Acciones </th>
       			</tr>
       		<% @favores.each do |favor| %>
             	<tr>
                 	<td> 
                 <%= link_to favor do %>
                     <% if favor.foto == '' %>
-                        <%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
+                        <%= image_tag "sin.gif", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
                         <% else %>
                               <%= image_tag favor.foto , :alt => "Foto",  
                               height: 'auto', width: '70', style:"" %>
@@ -161,11 +164,61 @@
                   	<td> <%= link_to favor.titulo, favor %> </td>
                   	<td> <%= link_to favor.ubicacion, favor %> </td>
                   	<td> <%= link_to favor.descripcion, favor %> </td>
-                  	<td> <%= link_to favor.estado, favor %> </td>
+                  	<td> <%= favor.estadoActual %> </td>
+                  	<td> <% if favor.estado == 'a' %> 
+                  			Eliminar Editar Postulantes
+                  		 <% elsif favor.estado == 'p' %>
+                  		 	Finalizado /  No Finalizado
+                  		 <% end %>
+                  	</td>
            		</tr>
       		<% end %>
 			</table>
 		</div>
 	</div>
 </div>
+
+<!-- LISTADO DE MIS POSTULACIONES -->
+<div id="postulaciones" class="row barraElemento">     
+	<div class="row">
+		<div class="col-md-12"><h2>Mis Postulaciones</h2></div>
+	</div>
+
+	<div class="row" style="background-color:#F2F2F2">
+		<div class="col-md-12">
+			<table class="table">
+				<tr>
+            		<th> Foto </th>
+            		<th> Titulo</th>
+            		<th> Estado </th>
+      			</tr>
+      		<% current_user.offers.where("otorgado = true").each do |offer| 
+      			favor = Favor.find(offer.favor_id)
+      		%>
+      			<tr>
+      				<td>
+      				<%= link_to favor do %>
+                    <% if favor.foto == '' %>
+                        <%= image_tag "sin.gif", :alt => "Sin Foto",  height: 'auto', width: '70', class: "img-rounded", style:"" %>
+                        <% else %>
+                              <%= image_tag favor.foto , :alt => "Foto",  
+                              height: 'auto', width: '70', style:"" %>
+                        <% end %>
+                    <% end %>
+                  	</td>
+                  	<td> <%= link_to favor.titulo, favor %> </td>
+                  	<td> <%= favor.estadoActual %> </td>
+            	</tr>
+      		<% end %>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!--
+Activo (a) -> Eliminado (e)
+Activo (a) -> Pendiente (p) -> Realizado / No realizado
+
+
+-->
 

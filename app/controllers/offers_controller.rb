@@ -14,16 +14,23 @@ class OffersController < ApplicationController
       	redirect_to (:back)
 	end
 
-
-
 	def edit
   		@favor = Favor.find(params[:id]) 
   		@offer = Offer.new
-  	end
+  end
 
-  	def crear(favor)
+  def crear(favor)
 
-  	end
+  end
+
+  def marcarVistoPostulacion
+    favor = params[:favor]
+    offer = current_user.offers.where("favor_id ="+favor.to_s).first
+    offer.vistopostulante = 'true'
+    offer.save
+    redirect_to (:back)
+  end
+
 
 
 

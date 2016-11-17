@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'favors/aceptar_postulante/:favor/:id' => 'favors#aceptar_postulante'
   resources :offers
   post 'offers/new'
+  get 'offers/marcarVistoPostulacion/:favor' => 'offers#marcarVistoPostulacion'
   resources :ranking
   resources :admin_panel
 

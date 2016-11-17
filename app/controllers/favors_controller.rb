@@ -13,7 +13,7 @@ class FavorsController < ApplicationController
     	@favor.titulo = params[:favor][:titulo]
     	@favor.descripcion = params[:favor][:descripcion]
     	@favor.user_id = current_user.id
-    	@favor.estado = true
+    	@favor.estado = 'a'
     	@favor.ubicacion = params[:ubicacion]
     	@favor.foto = params[:favor][:foto]
       current_user.eslabon = current_user.eslabon - 1;
@@ -65,10 +65,11 @@ class FavorsController < ApplicationController
   end
 
   def destroy
-    if can? :destroy, Favor
-      favor = Favor.find(params[:id])
+    favor = Favor.find(params[:id])
+    if can? :destroy, Favor and favor.estado = 'a'
       if favor.user_id == current_user.id
-        favor.estado = 'f'
+        favor.estado = 'e'
+        favor.offers.destroy_all
         if favor.save
           flash[:success] = "La gauchada se ha cancelado exitosamente"
           redirect_to ("/")
@@ -81,7 +82,7 @@ class FavorsController < ApplicationController
         redirect_to (:back)
       end
     else 
-      flash[:danger] = "No cuenta con los permisos para eliminar."
+      flash[:danger] = "No cuenta con los permisos para eliminar. O no puede eliminarse."
       redirect_to (:back)
     end
   end
@@ -103,10 +104,10 @@ class FavorsController < ApplicationController
     offer.otorgado = true;
     if offer.save
         f = Favor.find(favor)
-        f.estado = 'f'
+        f.estado = 'p'
         if f.save
           flash[:success] = "Se acepto satisfactoriamente al postulante."
-          redirect_to (:back)
+          redirect_to (f)
         else 
           flash[:danger] = "Hubo un error al modificar el estado de la gauchada."
           redirect_to (:back)

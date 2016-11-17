@@ -11,4 +11,19 @@ class Favor < ActiveRecord::Base
 		end
 		return false
 	end
+
+	def estadoActual
+		if self.estado == 'a' 
+            estado = "Activo" 
+        elsif self.estado == 'e'
+            estado = "Eliminado"
+        elsif self.estado == 'p'
+            estado = "Pendiente"
+        elsif self.estado == 'r'
+            estado = "Finalizado, Exitoso"
+        elsif self.estado == 'nr'
+            estado = "Finalizado, No cumplido"
+        end
+        return estado
+	end
 end
