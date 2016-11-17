@@ -144,6 +144,7 @@
             		<th> Titulo</th>
             		<th> Ubicacion</th>
             		<th> Descripción </th>
+            		<th> Estado </th>
       			</tr>
       		<% @favores.each do |favor| %>
             	<tr>
@@ -160,6 +161,7 @@
                   	<td> <%= link_to favor.titulo, favor %> </td>
                   	<td> <%= link_to favor.ubicacion, favor %> </td>
                   	<td> <%= link_to favor.descripcion, favor %> </td>
+                  	<td> <%= link_to favor.estado, favor %> </td>
            		</tr>
       		<% end %>
 			</table>
