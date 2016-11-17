@@ -1,2 +1,38 @@
-<h1>Notificaciones#index</h1>
-<p>Find me in app/views/notificaciones/index.html.erb</p>
+<!--Usuario.select(date(updated_at) as ordered_date, avg(edad) as edad_avg").group("date(updated_at)").having("avg(edad) > ?", 18)-->
+
+<h3> Postulaciones</h3>
+
+<table class="table" style="text-align: center;" >
+	<tr>
+		<th style="text-align: center;"> Foto </th>
+		<th style="text-align: center;"> Titulo </th>
+		<th style="text-align: center;"> Cantidad de notificaciones </th>
+		<td style="text-align: center;"> Acciones</td>
+	</tr>
+	<% Offer.select('favor_id, COUNT(favor_id) as cantidad').where("visto = 'false'").group('favor_id').each do |offer| 
+		favor = Favor.find(offer.favor_id)
+		if (favor.user.id == current_user.id) %>
+			<tr>
+				<td>
+				<% if favor.foto == '' %>
+        		<%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% else %>
+             	<%= image_tag favor.foto , :alt => "Foto",  
+                style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% end %>
+				</td>
+				<td>
+					<%= link_to favor.titulo, favor , style: "color:#000"%>
+				</td>
+				<td>
+					<%= offer.cantidad %>
+				</td>
+				<td>
+					<a href="/favors/postulantes/<%= offer.favor_id %>" class="btn btn-warning">
+						Ver Postulantes
+					</a>
+				</td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>

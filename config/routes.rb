@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :favors
+  get 'favors/postulantes/:id' => 'favors#postulantes'
+  get 'favors/aceptar_postulante/:favor/:id' => 'favors#aceptar_postulante'
   resources :offers
   post 'offers/new'
   resources :ranking

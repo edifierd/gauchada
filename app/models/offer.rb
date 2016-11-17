@@ -9,4 +9,5 @@ class Offer < ActiveRecord::Base
 		end
 		return rta
 	end
+
 end
