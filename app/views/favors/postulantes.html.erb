@@ -1,0 +1,34 @@
+<div class="row" style="margin-top: 20px;">
+	<a href="/favors/<%= @favor.id %>" class="col-sm-3" style="text-align: center; color:#000">
+		<h3>Postulantes Gauchada: </h3>
+		<% if @favor.foto == '' %>
+        	<%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  style:"max-width: 200px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        <% else %>
+            <%= image_tag @favor.foto , :alt => "Foto",  
+                style:"max-width: 200px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        <% end %>
+        <h4><%= @favor.titulo %></h4>
+        <h4><%= @favor.descripcion %></h4>
+	</a>
+	<div class="col-sm-9">
+		<table class="table" style="margin-top: 45px;">
+			<tr>
+				<th>Usuario</th>
+				<th>Menaje</th>
+				<th>Acciones</th>
+			</tr>
+			<% @favor.offers.order('id DESC').each do |offer| 
+				user = User.find(offer.user_id)%>
+			<tr>
+				<td><%= link_to user.first_name, user , style: "color:#000"%></td>
+				<td><%= offer.cuerpo %></td>
+				<td>
+					<a href="/favors/aceptar_postulante/<%= offer.favor_id %>/<%= offer.user_id %>" class="btn btn-success">
+					Aceptar
+					</a>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

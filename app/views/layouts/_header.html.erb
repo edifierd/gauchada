@@ -45,13 +45,11 @@
   					<%= link_to "Publicar Gauchada", new_favor_path() , action: "new" %>
   				</li>	
 
-          <% if cantidadNotificaciones > 0 %>
-            <li role="presentation"
-              <%- if controller_name == 'notificaciones' %> class="active" <% end %> >
-              <a href="/notificaciones/index">Notificaciones <span class="badge">
-              <%= cantidadNotificaciones %></span></a>
-            </li>
-          <% end %>
+          <li role="presentation"
+            <%- if controller_name == 'notificaciones' %> class="active" <% end %> >
+            <a href="/notificaciones/index">Notificaciones <span class="badge">
+            <%= cantidadNotificaciones %></span></a>
+          </li>
 
   				<li role="presentation"
             <%- if controller_name == 'users' %> class="active" <% end %> >

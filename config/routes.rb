@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'pay/new'
+
+  get 'pay/show'
+
   get 'notificaciones/index'
 
   get 'admin_panel/index'
@@ -33,10 +37,16 @@ Rails.application.routes.draw do
 
   resources :users
   resources :favors
+  get 'favors/postulantes/:id' => 'favors#postulantes'
+  get 'favors/aceptar_postulante/:favor/:id' => 'favors#aceptar_postulante'
   resources :offers
   post 'offers/new'
+  get 'offers/marcarVistoPostulacion/:favor' => 'offers#marcarVistoPostulacion'
+  
   resources :ranking
   resources :admin_panel
+  resources :pay
+  post 'pay/new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

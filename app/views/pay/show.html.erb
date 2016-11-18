@@ -1,0 +1,107 @@
+
+<style type="text/css">
+  p{ 
+  font-size: 17px;
+  margin-left: 15px;
+  } 
+
+  .marcoUser{
+    padding: 50px; 
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #D8D8D8; 
+  margin-right:30px; 
+  margin-left:30px;
+  margin-top: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  }
+
+</style>
+
+
+<div class="row marcoUser">     
+  <div class="row">
+    <div class="col-md-12">
+      <h3>¡Compre eslabones!</h3>
+    </div>
+  </div>
+
+  <div class="row" style="background-color:#F2F2F2">
+
+  <div class="row">
+    <div class="col-md-6"> 
+     <p class="Text-center"> <font face="arial" size="3" color="blue" >Cada eslabon tiene un costo de $12</font></p>
+    </div>
+  </div>    
+    <%= form_tag("/pay/new") do %>
+      <div class="row">
+        <p> </p>
+      </div>
+      <div class="row">
+        <div class="col-md-2"> 
+          <%= label_tag(:banco, "Medio de pago:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-md-2">
+          <td>
+            <select name=Tarjeta class="form-control input-sm">
+              <option value="Tarjeta VISA">Visa</option>
+              <option value="Tarjeta MASTERCARD">Mastercard</option>
+            </select>
+          </td>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-md-2"> 
+          <%= label_tag(:banco, "Banco:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-md-4"> 
+          <td>
+            <select name=Banco class="form-control input-sm" >
+              <option value="Santander Rio">Santander Rio</option>
+              <option value="Banco Provincia">Banco Provincia</option>
+              <option value="Banco Nacion">Banco Nacion</option>
+              <option value="Banco frances">Banco Frances</option>
+              <option value="Tarjeta Naranja">Tarjeta Naranja</option>      
+              <option value="HSBC">HSBC</option>
+            </select>
+          </td>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <%= label_tag(:numero, "Numero de tarjeta:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-xs-2">
+          <input value="" type="text" maxlength="17" minlength="16" size="17" required="true" class="form-control input-sm" id="numero" >
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div class="col-xs-2">
+          <%= label_tag(:clave, "Clave de tarjeta:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-xs-1">
+          <input value="" type="text" maxlength="3" minlength="3" size="3" required="true" class="form-control input-sm" id="clave" >
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= label_tag(:mensaje, "Cantidad:" , style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-md-2">    
+          <input value="" type="number"  min="1"  required="true" class="form-control input-sm" name="cantidad_eslabones" id="cantidad_eslabones" >             
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= submit_tag("Comprar", class: 'btn btn-info btn-md', style:"margin-top:35px;") %>
+      </div>
+    <%end%>
+</div>
+      
+</div>

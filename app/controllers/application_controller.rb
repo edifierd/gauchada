@@ -10,9 +10,11 @@ class ApplicationController < ActionController::Base
 	#SOLICITUDES DE POSTULACION
 	Offer.all.each do |res|  
 		if (Favor.find(res.favor_id).user.id == current_user.id) and (res.is_pendiente?)
-			cant = cant + 1
+			cant += cant + 1
 		end
 	end 
+
+	cant += current_user.offers.where("otorgado = true and vistopostulante = 'false' ").count
 
 
 	return cant
