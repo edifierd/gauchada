@@ -2,7 +2,7 @@
 	<a href="/favors/<%= @favor.id %>" class="col-sm-3" style="text-align: center; color:#000">
 		<h3>Postulantes Gauchada: </h3>
 		<% if @favor.foto == '' %>
-        	<%= image_tag "http://www.libreriasigal.com/images/sin_foto.png", :alt => "Sin Foto",  style:"max-width: 200px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        	<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 200px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
         <% else %>
             <%= image_tag @favor.foto , :alt => "Foto",  
                 style:"max-width: 200px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
