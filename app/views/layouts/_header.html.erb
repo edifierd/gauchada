@@ -56,16 +56,16 @@
             <%= link_to "Perfil de "+current_user.first_name , current_user %>
           </li>
 
-  				<li role="presentation">
-				    <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
-				  </li>
-
           <% if current_user.has_role? :admin %>
             <li role="presentation" 
               <%- if controller_name == 'admin_panel' %> class="active" <% end %> >
               <%= link_to 'Configuraciones', "/admin_panel" %>
             </li>
           <% end %>
+
+          <li role="presentation">
+            <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> 
+          </li>
 			<% else %>
 				
 				<li role="presentation" 
