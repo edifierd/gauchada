@@ -75,9 +75,14 @@
           <%= label_tag(:numero, "Numero de tarjeta:", style: "margin-right:auto; margin-left: 10px;") %>
         </div>
         <div class="col-xs-2">
-          <input value="" type="text" maxlength="17" minlength="16" size="17" required="true" class="form-control input-sm" id="numero" >
+          <input value="" type="tel" maxlength="16" minlength="16" size="16" required="true" class="form-control input-sm" id="numero"  pattern="[0-9]{16,17}">
         </div>
       </div>
+      <div class="row">
+      <div class="col-xs-10">
+       <p class="Text-left"> <font face="arial" size="2" color="grey" >El numero de la tarjeta debe ser de 16 numeros</font></p>
+       </div>
+       </div>
       
 
       <div class="row">
@@ -85,9 +90,14 @@
           <%= label_tag(:clave, "Clave de tarjeta:", style: "margin-right:auto; margin-left: 10px;") %>
         </div>
         <div class="col-xs-1">
-          <input value="" type="text" maxlength="3" minlength="3" size="3" required="true" class="form-control input-sm" id="clave" >
+          <input value="" type="tel" maxlength="3" minlength="3" size="3" required="true" class="form-control input-sm" id="clave" pattern="[0-9]{3,3}" >
         </div>
       </div>
+       <div class="row">
+      <div class="col-xs-10">
+       <p class="Text-left"> <font face="arial" size="2" color="grey" >La clave debe ser de 3 numeros</font></p>
+       </div>
+       </div>
 
 
       <div class="row">
@@ -95,12 +105,14 @@
           <%= label_tag(:mensaje, "Cantidad:" , style: "margin-right:auto; margin-left: 10px;") %>
         </div>
         <div class="col-md-2">    
-          <input value="" type="number"  min="1"  required="true" class="form-control input-sm" name="cantidad_eslabones" id="cantidad_eslabones" >             
+          <input value="" type="number"  min="1"  required="true" class="form-control input-sm" name="cantidad_eslabones" id="cantidad_eslabones">             
         </div>
       </div>
-</div>
       <div class="col-md-2">
         <%= submit_tag("Comprar", class: 'btn btn-info btn-md', style:"margin-top:35px;") %>
       </div>
+      
+</div>
+      
     <%end%>
 </div>
