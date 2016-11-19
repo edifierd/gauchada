@@ -4,7 +4,7 @@
 		document.getElementById("postulaciones").style.display = "none";
 		document.getElementById(contenido).style.display = "block";
 
-	} 
+	}  
 </script>
 
 <style type="text/css">
@@ -178,8 +178,16 @@
                   	<td> <%= link_to favor.ubicacion, favor %> </td>
                   	<td> <%= link_to favor.descripcion, favor %> </td>
                   	<td> <%= favor.estadoActual %> </td>
-                  	<td> <% if favor.estado == 'a' %> 
-                  			Eliminar Editar Postulantes
+                  	<td> 
+                  		<% if current_user and can? :update, favor and can? :destroy, favor and favor.estado == 'a'%>
+            				<a href="/favors/postulantes/<%= favor.id %>" 
+            				class="btn btn-primary btn-xs" style="margin-top:10px;">Lista Postulantes</a>
+
+            				<%= link_to "Editar", edit_favor_path(favor), 
+            				class: 'btn btn-danger btn-xs', style:"margin-top:10px;"%>
+            
+           					<%= link_to "Eliminar",favor, method: :delete, 
+           					class: 'btn btn-danger btn-xs', style:"margin-top:10px;"%>
                   		 <% elsif favor.estado == 'p' %>
                   		 	Finalizado /  No Finalizado
                   		 <% end %>
