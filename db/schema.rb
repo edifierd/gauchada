@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20161117200122) do
     t.string   "foto",        default: ""
   end
 
+  create_table "logros", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "valormin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "offers", force: :cascade do |t|
     t.boolean  "otorgado"
     t.text     "cuerpo"

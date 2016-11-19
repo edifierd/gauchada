@@ -25,7 +25,9 @@
     <tr>
       <td><%= r.label :cantidad_eslabones %></td>
       <td>
-      <%= r.text_area :cantidad_eslabones, class: 'form-control', label: 'cantidad_eslabones', placeholder: 'Ingrese la cantidad de eslabones necesarios' , :required => true %>
+       <input value="" type="tel" label="cantidad_eslabones" required="required" 
+        name="ranking[cantidad_eslabones]" id="ranking_cantidad_eslabones"  pattern="-?[0-9]{0,4}">
+      
         </td>
     </tr>
 
