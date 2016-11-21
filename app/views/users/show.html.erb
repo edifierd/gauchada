@@ -2,6 +2,7 @@
 	function muestra_oculta(contenido){
 		document.getElementById("favores").style.display = "none";
 		document.getElementById("postulaciones").style.display = "none";
+		document.getElementById("gauchadasRealizadas").style.display = "none";
 		document.getElementById(contenido).style.display = "block";
 
 	}  
@@ -101,12 +102,14 @@
 	  		<p><i>Genero:</i> <%= @user.genre %></p>
 	  		</div>
 	  	</div>
-	  	<% if current_user.id==@user.id %>
+	  	<% if current_user %>
+	  	<% if current_user.id == @user.id %>
 	  	<div class="row">
 			<div class="col-md-12">
 	  		<p><i>Cantidad de eslabones:</i> <%= @user.eslabon %></p>
 	  		</div>
 	  	</div>
+	  	<%end%>
 	  	<%end%>
 		<div class="row">
 	  		<div class="col-md-12">
@@ -121,10 +124,13 @@
 		<ul class="nav nav-pills nav-justified" >
   			<li role="presentation">
   				<a onclick="muestra_oculta('favores')" >
-  					<% if current_user.id == @user.id %> Mis <% end %> Gauchadas
+  					<% if current_user %>
+  						<% if current_user.id == @user.id %> Mis <% end %> 
+  					<% end %> Gauchadas
   				</a>
   			</li>
 
+  			<% if current_user %>
   			<% if current_user.id == @user.id %>
   			<li role="presentation">
   				<a onclick="muestra_oculta('postulaciones')" >
@@ -132,9 +138,10 @@
   				</a>
   			</li>
   			<% end %>
+  			<% end %>
 
   			<li role="presentation">
-  				<a  onclick="muestra_oculta('misFavores')">
+  				<a  onclick="muestra_oculta('gauchadasRealizadas')">
   					Gauchadas Realizadas
   				</a>
   			</li>
@@ -147,7 +154,11 @@
 <div id="favores" class="row barraElemento" style="display: block;">     
 	<div class="row">
 		<div class="col-md-12">
-			<h2><% if current_user.id == @user.id %> Mis <% end %>  Gauchadas Publicadas</h2>
+			<h2>
+			<% if current_user %>
+				<% if current_user.id == @user.id %> Mis <% end %>
+			<% end %>  Gauchadas Publicadas
+			</h2>
 		</div>
 	</div>
 
@@ -199,12 +210,13 @@
 	</div>
 </div>
 
+
 <!-- LISTADO DE MIS POSTULACIONES -->
 <div id="postulaciones" class="row barraElemento">     
 	<div class="row">
 		<div class="col-md-12"><h2>Mis Postulaciones</h2></div>
 	</div>
-
+	<% if current_user %>
 	<div class="row" style="background-color:#F2F2F2">
 		<div class="col-md-12">
 			<table class="table">
@@ -215,7 +227,7 @@
             		<th> Correo de Contacto</th>
             		<th> Estado </th>
       			</tr>
-      		<% current_user.offers.each do |offer| 
+      		<% current_user.offers.order('id DESC').each do |offer| 
       			favor = Favor.find(offer.favor_id)
       		%>
       			<tr>
@@ -245,6 +257,15 @@
       		<% end %>
 			</table>
 		</div>
+	</div>
+	<% end %>
+</div>
+
+
+
+<div id="gauchadasRealizadas" class="row barraElemento">     
+	<div class="row">
+		<div class="col-md-12"><h2>Gauchadas Realizadas</h2></div>
 	</div>
 </div>
 

@@ -1,14 +1,19 @@
 class FavorsController < ApplicationController
    def show
-  	 @favor = Favor.find(params[:id])
-     offer = @favor.offers.where("otorgado = true").first
-     if offer
-      @postulado = User.find(offer.user_id)
-     end
+     if Favor.find(params[:id]).estado != 'e'
+  	   @favor = Favor.find(params[:id])
+       offer = @favor.offers.where("otorgado = true").first
+       if offer
+         @postulado = User.find(offer.user_id)
+       end
+     else 
+      flash[:danger] = "Esta gauchada ya no existe"
+      redirect_to ("/")
+    end
    end
 
    def create
-   	if current_user.eslabon > 0
+   	if current_user.eslabon > 0 and can? :create, Favor
     	@favor = Favor.new
     	@favor.titulo = params[:favor][:titulo]
     	@favor.descripcion = params[:favor][:descripcion]
@@ -41,32 +46,36 @@ class FavorsController < ApplicationController
    end
 
    def edit
-    if can? :update, Favor.find(params[:id]) 
+    f = Favor.find(params[:id])
+    if can? :update, f and f.estado == 'a'
       @favor = Favor.find(params[:id])  
     else 
-      flash[:danger] = "No cuenta con los permisos para editar."
+      flash[:danger] = "No puedes editar esta gauchada. "
       redirect_to ("/")
     end  
    end
 
    def update
-    @favor = Favor.find(params[:id])
-    @favor.titulo = params[:favor][:titulo]
-    @favor.descripcion = params[:favor][:descripcion]
-    @favor.ubicacion = params[:ubicacion]
-    @favor.foto = params[:favor][:foto]
-    if @favor.save
+    f = Favor.find(params[:id])
+    if can? :update, f and f.estado == 'a'
+      @favor = Favor.find(params[:id])
+      @favor.titulo = params[:favor][:titulo]
+      @favor.descripcion = params[:favor][:descripcion]
+      @favor.ubicacion = params[:ubicacion]
+      @favor.foto = params[:favor][:foto]
+      if @favor.save
         flash[:success] = "El favor ha sido actualizado exitosamente."
         redirect_to @favor
-    else 
+       else 
         flash[:danger] = "Ya existe una gauchada con ese nombre o se produjo un error."
         redirect_to (:back)
+      end
     end
   end
 
   def destroy
     favor = Favor.find(params[:id])
-    if can? :destroy, Favor and favor.estado = 'a'
+    if can? :destroy, favor and favor.estado == 'a'
       if favor.user_id == current_user.id
         favor.estado = 'e'
         favor.offers.destroy_all
