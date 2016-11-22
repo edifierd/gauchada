@@ -31,7 +31,7 @@
 
   <div class="row">
     <div class="col-md-6"> 
-     <p class="Text-center"> <font face="arial" size="3" color="blue" >Cada eslabon tiene un costo de $12</font></p>
+     <p> <font face="arial" size="3" color="blue" >Cada eslabon tiene un costo de $12</font></p>
     </div>
   </div>    
     <%= form_tag("/pay/new") do %>
@@ -70,14 +70,47 @@
         </div>
       </div>
 
+       <div class="row">
+        <div class="col-xs-2">
+          <%= label_tag(:nombre, "Nombre del titular:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-xs-2">
+          <input value="" type="text"  required="true" class="form-control input-sm" id="nombre"  pattern="[a-zA-Z]+">
+        </div>
+      </div>
+
+       <div class="row">
+        <div class="col-xs-2">
+          <%= label_tag(:apellido, "Apellido del titular:", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-xs-2">
+          <input value="" type="text" size="16" required="true" class="form-control input-sm" id="apellido" pattern="[a-zA-Z]+">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <%= label_tag(:fecha, "Vencimiento", style: "margin-right:auto; margin-left: 10px;") %>
+        </div>
+        <div class="col-xs-2">
+          <input type="date" name="fecha" min="2016-11-01" required="true">
+        </div>
+      </div>
+
+
+
+
+
       <div class="row">
         <div class="col-xs-2">
           <%= label_tag(:numero, "Numero de tarjeta:", style: "margin-right:auto; margin-left: 10px;") %>
         </div>
         <div class="col-xs-2">
-          <input value="" type="tel" maxlength="16" minlength="16" size="16" required="true" class="form-control input-sm" id="numero"  pattern="[0-9]{16,17}">
+          <input value="" type="tel" maxlength="16" minlength="16" size="16" required="true" class="form-control input-sm" id="numero"  pattern="[0-9]{16,16}">
         </div>
       </div>
+
+
       <div class="row">
       <div class="col-xs-10">
        <p class="Text-left"> <font face="arial" size="2" color="grey" >El numero de la tarjeta debe ser de 16 numeros</font></p>
