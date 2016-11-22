@@ -92,8 +92,8 @@
         <div class="col-xs-2">
           <%= label_tag(:fecha, "Vencimiento", style: "margin-right:auto; margin-left: 10px;") %>
         </div>
-        <div class="col-xs-2">
-          <input type="date" name="fecha" min="2016-11-01" required="true">
+        <div class="col-xs-6">
+          <%= date_select :fecha, :order => [:day, :month, :year], :required => true %>
         </div>
       </div>
 

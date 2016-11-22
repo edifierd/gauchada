@@ -2,7 +2,7 @@ class PayController < ApplicationController
   def show
   end
 
-  def new
+  def new 
   		
 		pay = Pay.new
 		pay.cantidad_eslabones = params[:cantidad_eslabones]
