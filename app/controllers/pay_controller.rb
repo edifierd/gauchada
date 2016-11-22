@@ -8,7 +8,6 @@ class PayController < ApplicationController
 		pay.cantidad_eslabones = params[:cantidad_eslabones]
 		pay.costo_eslabon = '12'
 		pay.user_id = current_user.id
-    flash[:success] = "Prueba" 
 		if pay.save
   			flash[:success] = "La compra fue realizada correctamente"
   			current_user.eslabon = current_user.eslabon + pay.cantidad_eslabones
