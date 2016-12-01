@@ -127,4 +127,36 @@ class FavorsController < ApplicationController
     end
   end
 
+  def marcarComoRealizado
+    favor = Favor.find(params[:favor])
+    user_id = favor.postulante
+    if favor.estado == 'p' and user_id != -1
+      favor.estado = 'r'
+      favor.save
+      user = User.find(user_id)
+      user.eslabon = user.eslabon + 1
+      user.save
+      flash[:success] = "Se marco correctamente la gauchada como Realizado"
+    else
+      flash[:danger] = "Hubo un error al querer marcar la gauchada como Realizado."
+    end
+    redirect_to (:back)
+  end
+
+  def marcarComoNoRealizado
+    favor = Favor.find(params[:favor])
+    user_id = favor.postulante
+    if favor.estado == 'p' and user_id != -1
+      favor.estado = 'nr'
+      favor.save
+      user = User.find(user_id)
+      user.eslabon = user.eslabon - 2
+      user.save
+      flash[:success] = "Se marco correctamente la gauchada como NO realizado"
+    else
+      flash[:danger] = "Hubo un error al querer marcar la gauchada como NO realizado."
+    end
+    redirect_to (:back)
+  end
+
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'notificaciones/index'
 
   get 'admin_panel/index'
+  post 'admin_panel/recaudacion' => 'admin_panel#recaudacion'
+  get 'admin_panel/recaudacion' => 'admin_panel#recaudacion'
 
   get 'users/passForm'
   post 'users/passReset'
@@ -39,6 +41,8 @@ Rails.application.routes.draw do
   resources :favors
   get 'favors/postulantes/:id' => 'favors#postulantes'
   get 'favors/aceptar_postulante/:favor/:id' => 'favors#aceptar_postulante'
+  get 'favors/marcarComoRealizado/:favor' => 'favors#marcarComoRealizado'
+  get 'favors/marcarComoNoRealizado/:favor' => 'favors#marcarComoNoRealizado'
   resources :offers
   post 'offers/new'
   get 'offers/marcarVistoPostulacion/:favor' => 'offers#marcarVistoPostulacion'

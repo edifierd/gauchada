@@ -1,0 +1,72 @@
+
+<style type="text/css">
+  p{ 
+  font-size: 17px;
+  margin-left: 15px;
+  } 
+</style>
+
+<h2 style="margin-top: 40px;"> Seleccione dos fechas para buscar recaudaciones:</h2>
+
+<div class="row" style="
+  padding: 50px; 
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #D8D8D8; 
+  margin-right:30px; 
+  margin-left:30px;
+  margin-top: 15px;
+  margin-bottom:22px;
+  border-radius: 17px;
+  border: solid;"
+>
+  
+<%= form_tag("/admin_panel/recaudacion") do %>
+  <%= hidden_field_tag(:send, true) %>
+  <div class="row" style="padding: 10px;">
+    <div class="col-md-5">
+      Fecha de inicio
+      <%= date_select :pay, "inicio",  :order => [:day, :month, :year] %>
+    </div>
+    <div class="col-md-5">
+      Fecha de Fin
+      <%= date_select :pay, "fin", :order => [:day, :month, :year] %>
+    </div>
+    <div class="col-md-2">
+      <%= submit_tag("Buscar", class: 'btn btn-info btn-md', style:"") %>
+    </div>
+  </div>
+<% end %>
+
+</div> 
+
+
+<% if @pays %>
+<h2 style="margin-top: 35px;"> Compras de eslabones desde <%= @inicio %> hasta <%= @fin %> : </h2>
+<table class="table" style="margin-top: 15px;">
+      <tr>
+            <th> Cantidad Eslabones</th>
+            <th> Precio por eslabon </th>
+            <th> Usuario </th>
+            <th> Fecha </th>
+            <th> Total Gastado </th>
+      </tr>
+      <% total = 0 %>
+      <% @pays.each do |pay|  
+            gasto_user =  pay.cantidad_eslabones * pay.costo_eslabon
+            total = total + gasto_user
+      %>
+            <tr>
+              <td> <%= pay.cantidad_eslabones %> </td>
+              <td> <%= pay.costo_eslabon %> </td>
+              <td> <%= link_to User.find(pay.user_id).first_name , User.find(pay.user_id) %> </td>
+              <td> <%= pay.created_at %> </td>
+              <td> <%= gasto_user %> </td>
+            </tr>
+      <% end %>
+      <tr>
+        <td colspan="4" style="text-align: right;"><h3>Total recaudado entre estas fechas -></h3></td>
+        <td> <h3><%= total %></h3> </td>
+      </tr>
+</table>
+<% end %>

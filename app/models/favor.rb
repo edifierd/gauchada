@@ -12,6 +12,14 @@ class Favor < ActiveRecord::Base
 		return false
 	end
 
+	def postulante
+		if self.estado == 'p'
+			return self.offers.where("otorgado = true").last.user.id
+		else
+			return -1
+		end
+	end
+
 	def estadoActual
 		if self.estado == 'a' 
             estado = "Activo" 
