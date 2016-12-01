@@ -24,6 +24,8 @@
   #<<: *default
  # database: db/production.postgresql
 
+ #Fede --> sudo service postgresql start
+
 
 development:
   adapter: postgresql

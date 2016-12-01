@@ -1,0 +1,19 @@
+<h2 style="margin-top: 35px;"> Ranking de usuarios por cantidad de eslabones: </h2>
+<table class="table" style="margin-top: 15px;">
+      <tr>
+            <th> Cantidad Eslabones </th>
+            <th> Nombre </th>
+            <th> Apellido </th>
+            <th> Correo </th>
+            <th> Perfil </th>
+      </tr>
+      <% @users.each do |user| %>
+            <tr>
+              <td> <%= user.eslabon %> </td>
+              <td> <%= user.first_name %> </td>
+              <td> <%= user.last_name %> </td>
+              <td> <%= user.email %> </td>
+              <td> <%= link_to "Ver Perdil" , User.find(user.id), class: "btn btn-info btn-md" %> </td>
+            </tr>
+      <% end %>
+</table>

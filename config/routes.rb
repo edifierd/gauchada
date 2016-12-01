@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'admin_panel/index'
   post 'admin_panel/recaudacion' => 'admin_panel#recaudacion'
   get 'admin_panel/recaudacion' => 'admin_panel#recaudacion'
+  get 'admin_panel/rankingEslabones' => 'admin_panel#rankingEslabones'
 
   get 'users/passForm'
   post 'users/passReset'
