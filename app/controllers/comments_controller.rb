@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
   def responder
   	comment = Comment.find(params[:comment_id])
   	comment.respuesta = params[:cuerpo]
+    comment.visto_mensaje = 'true'
   	if comment.save
   		flash[:success] = "Se envio la respuesta correctamente."
         redirect_to (:back)

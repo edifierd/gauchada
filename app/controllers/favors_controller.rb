@@ -85,6 +85,7 @@ class FavorsController < ApplicationController
       if favor.user_id == current_user.id
         favor.estado = 'e'
         favor.offers.destroy_all
+        favor.comments.destroy_all
         if favor.save
           flash[:success] = "La gauchada se ha cancelado exitosamente"
           redirect_to ("/")

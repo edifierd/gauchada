@@ -73,8 +73,72 @@
 </table>
 <% end %>
 
-<% if @cantOffers == 0 and @cantPostulaciones == 0 %>
+<% if @cantMensajes > 0 %>
+<table class="table" style="text-align: center;" >
+	<tr>
+		<th style="text-align: center;"> Foto </th>
+		<th style="text-align: center;"> Gauchada </th>
+		<th style="text-align: center;"> Mensajes sin responder </th>
+	</tr>
+	<% @favors.each do |favor|  
+		cantM  = favor.comments.where("visto_mensaje = 'false'").count
+		if (cantM > 0 ) %>
+			<tr>
+				<td>
+				<% if favor.foto == '' %>
+        		<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% else %>
+             	<%= image_tag favor.foto , :alt => "Foto",  
+                style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% end %>
+				</td>
+				<td>
+					<%= link_to favor.titulo, favor , style: "color:#000"%>
+				</td>
+				<td>
+					<%= cantM %>
+				</td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<% end %>
+
+<% if @respuestas.count > 0 %>
+<table class="table" style="text-align: center;" >
+	<tr>
+		<th style="text-align: center;"> Foto </th>
+		<th style="text-align: center;"> Gauchada </th>
+		<th style="text-align: center;"> Respuesta </th>
+	</tr>
+	<% @respuestas.each do |rta|  
+		favor = rta.favor %>
+			<tr>
+				<td>
+				<% if favor.foto == '' %>
+        		<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% else %>
+             	<%= image_tag favor.foto , :alt => "Foto",  
+                style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% end %>
+				</td>
+				<td>
+					<%= link_to favor.titulo, favor , style: "color:#000"%>
+				</td>
+				<td>
+					<a href="/notificaciones/marcarVitoRespuesta/<%= rta.id %>" class="btn btn-warning">
+						Ver respuesta
+					</a>
+				</td>
+			</tr>
+	<% end %>
+</table>
+<% end %>
+
+<% if @cantOffers == 0 and @cantPostulaciones == 0 and @cantMensajes == 0 and @respuestas.count == 0 %>
 	<div class="alert alert-warning" role="alert" style="margin: 20px; text-align: center;">
   		<h2> No tienes notificaciones :( <h2>
 	</div>
 <% end %>
+
+

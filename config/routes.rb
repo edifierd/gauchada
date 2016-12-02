@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'pay/show'
 
   get 'notificaciones/index'
+  get 'notificaciones/marcarVitoRespuesta/:id' => 'notificaciones#marcarVitoRespuesta'
 
   get 'admin_panel/index'
   post 'admin_panel/recaudacion' => 'admin_panel#recaudacion'
