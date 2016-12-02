@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function confirmar (msj = "Desea continuar") {
+  return confirm("¿"+msj+"?");
+}

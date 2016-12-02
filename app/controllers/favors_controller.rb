@@ -6,6 +6,7 @@ class FavorsController < ApplicationController
        if offer
          @postulado = User.find(offer.user_id) 
        end
+       @totalMsj = @favor.comments.count
        if @favor.isPropietario(current_user)
           @comments = @favor.comments.order('id DESC')
        else

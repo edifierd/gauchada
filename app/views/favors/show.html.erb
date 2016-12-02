@@ -1,4 +1,3 @@
-
 <% if @favor.estado == 'p' and can? :update, @favor %>
 
 <div class="alert alert-warning" role="alert" style="margin: 20px;">
@@ -28,7 +27,7 @@
 
           <div class='col-md-1'>
            <%= link_to "Eliminar",@favor, method: :delete, class: 'btn btn-danger btn-md',
-            style:"margin-top:10px;"%>
+            style:"margin-top:10px;" , :onclick => "return confirmar('Eliminar el favor');"%>
           </div>
 
 
@@ -84,11 +83,24 @@
   		</div>
 
   		<div class="panel panel-default">
-		<div class="panel-body">
-			<b>Propietario</b><br>
-    		<h4><%= link_to (@favor.user.first_name + @favor.user.last_name) , @favor.user %></h4>
-  		</div>
-  		</div> 
+    <div class="panel-body">
+      <b>Propietario</b><br>
+        <h4><%= link_to (@favor.user.first_name + @favor.user.last_name) , @favor.user %></h4>
+      </div>
+      </div> 
+
+      <div class="panel panel-default">
+    <div class="panel-body">
+      <b>Mensajes recibidos</b><br>
+        <h4>
+          <% if @totalMsj > 0 %>
+            <%= @totalMsj %>
+          <% else %>
+            No ha recibido mensajes
+          <% end %>
+        </h4>
+      </div>
+      </div> 
 	</div>
 </div>
   </div>
@@ -130,7 +142,7 @@
             <% else %>
               <%= form_tag ("/comments/delete") do %>
                 <%= hidden_field_tag(:comment_id, comment.id) %>
-              <%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;") %>
+              <%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
             <% end %>
             <% end %>
           </div>

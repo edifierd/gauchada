@@ -198,7 +198,7 @@
             				class: 'btn btn-danger btn-xs', style:"margin-top:10px;"%>
             
            					<%= link_to "Eliminar",favor, method: :delete, 
-           					class: 'btn btn-danger btn-xs', style:"margin-top:10px;"%>
+           					class: 'btn btn-danger btn-xs', style:"margin-top:10px;" , :onclick => "return confirmar('Eliminar el favor');"%>
                   		 <% elsif favor.estado == 'p' %>
                   		 	<a href="/favors/marcarComoRealizado/<%= favor.id %>" 
             				class="btn btn-success btn-xs" style="margin-top:10px;">
