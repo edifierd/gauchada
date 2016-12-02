@@ -4,7 +4,12 @@ class FavorsController < ApplicationController
   	   @favor = Favor.find(params[:id])
        offer = @favor.offers.where("otorgado = true").first
        if offer
-         @postulado = User.find(offer.user_id)
+         @postulado = User.find(offer.user_id) 
+       end
+       if @favor.isPropietario(current_user)
+          @comments = @favor.comments.order('id DESC')
+       else
+          @comments = current_user.comments.where("favor_id = "+@favor.id.to_s)
        end
      else 
       flash[:danger] = "Esta gauchada ya no existe"

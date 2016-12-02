@@ -34,4 +34,8 @@ class Favor < ActiveRecord::Base
         end
         return estado
 	end
+
+	def isPropietario(user)
+		return self.user_id == user.id
+	end
 end

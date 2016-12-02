@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'comments/index'
+
   get 'pay/new'
 
   get 'pay/show'
@@ -35,6 +37,10 @@ Rails.application.routes.draw do
   get 'ranking/show'
 
   root 'home#index'
+
+  post 'comments/new' => 'comments#new'
+  post 'comments/responder' => 'comments#responder'
+  post 'comments/delete' => 'comments#delete'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
