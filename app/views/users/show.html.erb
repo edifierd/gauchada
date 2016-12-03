@@ -106,7 +106,13 @@
 	  	<% if current_user.id == @user.id %>
 	  	<div class="row">
 			<div class="col-md-12">
-	  		<p><i>Cantidad de eslabones:</i> <%= @user.eslabon %></p>
+	  		<p><i>Cantidad de eslabones:</i> 
+              <% if @user.eslabon < 0 %>
+                <span style="color: red;"><%= @user.eslabon %></span>
+              <% else %>
+                <%= @user.eslabon %>
+              <% end %>
+        </p>
 	  		</div>
 	  	</div>
 	  	<%end%>
@@ -201,11 +207,11 @@
            					class: 'btn btn-danger btn-xs', style:"margin-top:10px;" , :onclick => "return confirmar('Eliminar el favor');"%>
                   		 <% elsif favor.estado == 'p' %>
                   		 	<a href="/favors/marcarComoRealizado/<%= favor.id %>" 
-            				class="btn btn-success btn-xs" style="margin-top:10px;">
+            				class="btn btn-success btn-xs" style="margin-top:10px;" onclick ="return confirmar('Marcar como realizado');")>
             				Realizado</a>
 
             				<a href="/favors/marcarComoNoRealizado/<%= favor.id %>" 
-            				class="btn btn-danger btn-xs" style="margin-top:10px;">
+            				class="btn btn-danger btn-xs" style="margin-top:10px;" onclick ="return confirmar('Marcar como NO realizado');">
             				No Realizado</a>
                   		 <% end %>
                   	</td>

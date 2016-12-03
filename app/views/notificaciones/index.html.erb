@@ -135,7 +135,45 @@
 </table>
 <% end %>
 
-<% if @cantOffers == 0 and @cantPostulaciones == 0 and @cantMensajes == 0 and @respuestas.count == 0 %>
+
+<% if @cantRealizado > 0 %>
+<table class="table" style="text-align: center;" >
+	<tr>
+		<th style="text-align: center;"> Foto </th>
+		<th style="text-align: center;"> Titulo </th>
+		<th style="text-align: center;"> Notificacion </th>
+		<th style="text-align: center;"> Acciones </th>
+	</tr>
+	<% current_user.offers.where("otorgado = true and vistorealizacion = 'false'").each do |offer| 
+		favor = Favor.find(offer.favor_id) 
+		if favor.estado == 'r' or favor.estado == 'nr' %>
+			<tr>
+				<td>
+				<% if favor.foto == '' %>
+        		<%= image_tag "sin.gif", :alt => "Sin Foto",  style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% else %>
+             	<%= image_tag favor.foto , :alt => "Foto",  
+                style:"max-width: 120px; margin-right:auto; margin-left:auto;" , class:"img-responsive img-rounded" %>
+        		<% end %>
+				</td>
+				<td>
+					<%= link_to favor.titulo, favor , style: "color:#000" %>
+				</td>
+				<td>
+					Se ha marcado la Gauchada en la que te postulaste como:  <b><%= favor.estadoActual %></b>
+				</td>
+				<td>
+					<a href="/offers/marcarVistoRealizacion/<%= offer.favor_id %>" class="btn btn-warning">
+						Marcar como leida
+					</a>
+				</td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<% end %>
+
+<% if @cantOffers == 0 and @cantPostulaciones == 0 and @cantMensajes == 0 and @respuestas.count == 0 and @cantRealizado == 0%>
 	<div class="alert alert-warning" role="alert" style="margin: 20px; text-align: center;">
   		<h2> No tienes notificaciones :( <h2>
 	</div>

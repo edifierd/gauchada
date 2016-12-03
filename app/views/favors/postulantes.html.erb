@@ -23,7 +23,7 @@
 				<td><%= link_to user.first_name, user , style: "color:#000"%></td>
 				<td><%= offer.cuerpo %></td>
 				<td>
-					<a href="/favors/aceptar_postulante/<%= offer.favor_id %>/<%= offer.user_id %>" class="btn btn-success">
+					<a href="/favors/aceptar_postulante/<%= offer.favor_id %>/<%= offer.user_id %>" class="btn btn-success" onclick ="return confirmar('Seguro aceptar a <%= user.first_name %> como candidato');">
 					Aceptar
 					</a>
 				</td>

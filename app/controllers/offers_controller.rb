@@ -31,6 +31,14 @@ class OffersController < ApplicationController
     redirect_to (:back)
   end
 
+  def marcarVistoRealizacion
+    favor = params[:favor]
+    offer = current_user.offers.where("favor_id ="+favor.to_s).first
+    offer.vistorealizacion = 'true'
+    offer.save
+    redirect_to (:back)
+  end
+
 
 
 

@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   resources :offers
   post 'offers/new'
   get 'offers/marcarVistoPostulacion/:favor' => 'offers#marcarVistoPostulacion'
+  get 'offers/marcarVistoRealizacion/:favor' => 'offers#marcarVistoRealizacion'
   
   resources :ranking
   resources :admin_panel

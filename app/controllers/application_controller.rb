@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
 
 	cant += current_user.offers.where("otorgado = true and vistopostulante = 'false' ").count
 
+  current_user.offers.where("otorgado = true and vistorealizacion = 'false' ").each do |offer|
+    favor = Favor.find(offer.favor_id)
+    if favor.estado == 'r' or favor.estado == 'nr'
+      cant += 1
+    end
+  end
+
+
 	cant += current_user.comments.where("visto_respuesta = 'false' and respuesta != 'null' ").count
   	
   	#Mensajes recibidos en mis gauchadas
@@ -25,7 +33,7 @@ class ApplicationController < ActionController::Base
   	end
 
 
-	return cant
+	 return cant
   end
 
 
